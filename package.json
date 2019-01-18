@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/netology-code/bjs-diplom/issues"
   },
-  "homepage": "https://github.com/netology-code/bjs-diplom#readme"
+  "homepage": "https://github.com/netology-code/bjs-diplom#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }

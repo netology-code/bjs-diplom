@@ -1,0 +1,19 @@
+{
+  "name": "netcoin",
+  "version": "1.0.0",
+  "description": "Дипломное задание к курсу «Основы JavaScript»",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netology-code/bjs-diplom.git"
+  },
+  "author": "Ivan Chernyshev <tcherivan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/netology-code/bjs-diplom/issues"
+  },
+  "homepage": "https://github.com/netology-code/bjs-diplom#readme"
+}

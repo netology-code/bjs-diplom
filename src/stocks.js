@@ -4,9 +4,12 @@ class MarketValue {
     const netcoinToStandardCurrency = Math.floor(Math.random() * 10);
 
     return {
-      NET_RUB: netcoinToStandardCurrency * 100,
-      NET_USD: (netcoinToStandardCurrency * 100) / 66,
-      NET_EUR: (netcoinToStandardCurrency * 100) / 72
+      NETCOIN_RUB: netcoinToStandardCurrency * 100,
+      NETCOIN_USD: (netcoinToStandardCurrency * 100) / 66,
+      NETCOIN_EUR: (netcoinToStandardCurrency * 100) / 72,
+      RUB_NETCOIN: 1 / (netcoinToStandardCurrency * 100),
+      USD_NETCOIN: 1 / ((netcoinToStandardCurrency * 100) / 66),
+      EUR_NETCOIN: 1 / ((netcoinToStandardCurrency * 100) / 72)
     };
   }
 }

@@ -63,7 +63,7 @@ app.post("/api/profile/login", async (req, res, next) => {
     await profile.checkPassword({ ...req.body });
     const user = await profile.findOne({ username: req.body.username });
     const token = await jwt.sign({ ...user._doc });
-    res.setHeader("Set-Cookie", `authorization=${token}`);
+    res.setHeader("Set-Cookie", `token=${token}`);
     res.sendStatus(204);
   } catch (e) {
     handleError(e, res);

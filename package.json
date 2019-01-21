@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/netology-code/bjs-diplom#readme",
   "dependencies": {
+    "@types/body-parser": "^1.17.0",
     "@types/create-hash": "^1.2.0",
     "@types/crypto-random-string": "^1.0.0",
     "@types/mongoose": "^5.3.8",
+    "body-parser": "^1.18.3",
     "create-hash": "^1.2.0",
     "crypto-random-string": "^1.0.0",
     "express": "^4.16.4",

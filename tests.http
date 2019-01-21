@@ -1,0 +1,35 @@
+###
+
+POST http://localhost:1337/api/profile/create
+Content-Type: application/json
+
+{
+    "username": "ivan-blacky",
+    "name": {
+        "firstName": "Ivan",
+        "lastName": "Blacky"
+    },
+    "password": "superSecret"
+}
+
+###
+
+POST http://localhost:1337/api/profile/check-password
+Content-Type: application/json
+
+{
+    "username": "ivan-blacky",
+    "password": "superSecret"
+}
+
+###
+
+POST http://localhost:1337/api/profile/convert
+Content-Type: application/json
+
+{
+    "username": "ivan-blacky",
+    "fromCurrency": "RUB",
+    "targetCurrency": "NETCOIN",
+    "targetAmount": "100"
+    }

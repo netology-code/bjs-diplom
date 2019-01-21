@@ -7,17 +7,30 @@ const express = require("express"),
   cookieParser = require("cookie-parser"),
   PORT = process.env.PORT || 1337;
 
+const handleError = error => {
+  console.error(error);
+  res.status(error.code || 500);
+  res.send(error);
+};
+
 const authenticate = async (req, res, next) => {
   try {
     const token = req.cookies.authorization;
-    const user = await jwt.verify(token);
-    req._user = await profile.findById(user._doc._id);
+    const decoded = await jwt.verify(token);
+    const user = await profile.findById(decoded._doc._id);
+    if (!user) {
+      throw {
+        code: 404,
+        message: "No such user"
+      };
+    }
+    req._user = user;
     next();
   } catch (e) {
-    console.error(e);
-    res.status(403).send({
+    handleError({
       code: 403,
-      message: "Authentication failure"
+      message: "Auth error",
+      payload: e
     });
   }
 };
@@ -32,14 +45,11 @@ app.get("/api/stocks", (req, res, next) => {
 });
 
 app.post("/api/profile/create", async (req, res, next) => {
-  let newProfile = {};
   try {
-    newProfile = await profile.registerNew({ ...req.body });
+    const newProfile = await profile.registerNew({ ...req.body });
     res.send(newProfile.toJSON());
   } catch (e) {
-    console.error(e);
-    res.status(e.code || 500);
-    res.send(e);
+    handleError(e);
   }
 });
 
@@ -51,9 +61,7 @@ app.post("/api/profile/login", async (req, res, next) => {
     res.setHeader("Set-Cookie", `authorization=${token}`);
     res.sendStatus(204);
   } catch (e) {
-    console.error(e);
-    res.status(e.code || 500);
-    res.send(e);
+    handleError(e);
   }
 });
 
@@ -69,9 +77,7 @@ app.post("/api/profile/convert", authenticate, async (req, res, next) => {
     });
     res.send(resp.toJSON());
   } catch (e) {
-    console.error(e);
-    res.status(e.code || 500);
-    res.send(e);
+    handleError(e);
   }
 });
 
@@ -82,9 +88,20 @@ app.post("/api/profile/transfer", authenticate, async (req, res, next) => {
     const resp = await user.transfer({ ...req.body });
     res.send(resp);
   } catch (e) {
-    console.error(e);
-    res.status(e.code || 500);
-    res.send(e);
+    handleError(e);
+  }
+});
+
+app.post("/api/add-money", authenticate, async (req, res, next) => {
+  const user = req._user;
+
+  try {
+    const resp = await user.addMoney({
+      ...req.body
+    });
+    res.send(resp);
+  } catch (e) {
+    handleError(e);
   }
 });
 

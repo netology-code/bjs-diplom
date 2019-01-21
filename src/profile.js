@@ -69,12 +69,12 @@ ProfileSchema.methods.checkAmount = function(currency) {
   return this.wallet[currency];
 };
 
-ProfileSchema.methods.convertCurrency = async function(
+ProfileSchema.methods.convertCurrency = async function({
   fromCurrency,
   targetCurrency,
   targetAmount,
   stocks
-) {
+}) {
   const allowedCurrencies = ["RUB", "USD", "EUR", "NETCOIN"];
 
   if (allowedCurrencies.indexOf(fromCurrency) === -1) {
@@ -102,7 +102,7 @@ ProfileSchema.methods.convertCurrency = async function(
 
   const fromCurrencyAmount = this.checkAmount(fromCurrency);
 
-  const shouldPay = exchangeRate * targetAmount;
+  const shouldPay = targetAmount / exchangeRate;
 
   const isEnoughMoney = fromCurrencyAmount - shouldPay >= 0;
 
@@ -113,8 +113,10 @@ ProfileSchema.methods.convertCurrency = async function(
     };
   }
 
-  this.wallet[fromCurrency] -= shouldPay;
-  this.wallet[targetCurrency] += targetAmount;
+  this.wallet[fromCurrency] =
+    Number(this.wallet[fromCurrency]) - Number(shouldPay);
+  this.wallet[targetCurrency] =
+    Number(this.wallet[targetCurrency]) + Number(targetAmount);
 
   return await this.save();
 };
@@ -122,6 +124,14 @@ ProfileSchema.methods.convertCurrency = async function(
 const Profile = mongoose.model("Profile", ProfileSchema);
 
 async function registerNew(user) {
+  const userExists =
+    (await Profile.find({ username: user.username })).length > 0;
+  if (userExists) {
+    throw {
+      code: 409,
+      message: "User already exists"
+    };
+  }
   user.salt = cryptoRandomString(16);
   const hash = createHash("sha1");
   hash.update(user.password + user.salt);
@@ -136,9 +146,19 @@ async function checkPassword({ username, password }) {
   const hash = createHash("sha1");
   hash.update(password + salt);
   password = hash.digest().toString("hex");
-  return profile.password === password;
+  const passwordCorrect = profile.password === password;
+  if (!passwordCorrect) {
+    throw {
+      code: 401,
+      message: "Password is incorrect"
+    };
+  } else {
+    return {
+      passwordCorrect: true
+    };
+  }
 }
 
 module.exports = Profile;
-module.exports = registerNew;
-module.exports = checkPassword;
+module.exports.registerNew = registerNew;
+module.exports.checkPassword = checkPassword;

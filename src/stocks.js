@@ -1,7 +1,7 @@
 class MarketValue {
   static getNewValue() {
     // получаем отношение неткоина к УЕ (от 0 до 10)
-    const netcoinToStandardCurrency = Math.floor(Math.random() * 10);
+    const netcoinToStandardCurrency = Math.floor(Math.random() * 10 + 1);
 
     return {
       NETCOIN_RUB: netcoinToStandardCurrency * 100,
@@ -14,10 +14,10 @@ class MarketValue {
   }
 }
 class Market {
-  constructor(maxHistoryLenght = 100) {
+  constructor(maxHistoryLength = 100) {
     this.work = false;
-    this.maxHistoryLenght = maxHistoryLenght;
-    this.history = new Array(this.maxHistoryLenght);
+    this.maxHistoryLength = maxHistoryLength;
+    this.history = new Array(this.maxHistoryLength);
     for (let index = 0; index < this.history.length; index++) {
       this.history[index] = MarketValue.getNewValue();
     }
@@ -25,7 +25,7 @@ class Market {
 
   generateNewMarketValues() {
     const newValue = MarketValue.getNewValue();
-    if (this.history.length >= this.maxHistoryLenght - 1) {
+    if (this.history.length >= this.maxHistoryLength - 1) {
       this.history.splice(0, 1);
     }
     this.history.push(newValue);

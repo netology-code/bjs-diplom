@@ -54,7 +54,7 @@ ProfileSchema.methods.addMoney = async function({ currency, amount }) {
       message: `Currency ${currency} is not one of allowed currencies: ${allowedCurrencies}`
     };
   }
-  this.wallet[currency] += amount;
+  this.wallet[currency] = Number(this.wallet[currency]) + Number(amount);
   return await this.save();
 };
 

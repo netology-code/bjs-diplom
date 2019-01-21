@@ -7,7 +7,7 @@ const express = require("express"),
   cookieParser = require("cookie-parser"),
   PORT = process.env.PORT || 1337;
 
-const handleError = error => {
+const handleError = (error, res) => {
   console.error(error);
   res.status(error.code || 500);
   res.send(error);
@@ -15,9 +15,9 @@ const handleError = error => {
 
 const authenticate = async (req, res, next) => {
   try {
-    const token = req.cookies.authorization;
+    const token = req.cookies["token"];
     const decoded = await jwt.verify(token);
-    const user = await profile.findById(decoded._doc._id);
+    const user = await profile.findById(decoded._id);
     if (!user) {
       throw {
         code: 404,
@@ -27,11 +27,16 @@ const authenticate = async (req, res, next) => {
     req._user = user;
     next();
   } catch (e) {
-    handleError({
-      code: 403,
-      message: "Auth error",
-      payload: e
-    });
+    handleError(
+      {
+        code: 403,
+        message: "Auth error",
+        payload: {
+          ...e
+        }
+      },
+      res
+    );
   }
 };
 
@@ -49,7 +54,7 @@ app.post("/api/profile/create", async (req, res, next) => {
     const newProfile = await profile.registerNew({ ...req.body });
     res.send(newProfile.toJSON());
   } catch (e) {
-    handleError(e);
+    handleError(e, res);
   }
 });
 
@@ -57,11 +62,11 @@ app.post("/api/profile/login", async (req, res, next) => {
   try {
     await profile.checkPassword({ ...req.body });
     const user = await profile.findOne({ username: req.body.username });
-    const token = await jwt.sign({ ...user });
+    const token = await jwt.sign({ ...user._doc });
     res.setHeader("Set-Cookie", `authorization=${token}`);
     res.sendStatus(204);
   } catch (e) {
-    handleError(e);
+    handleError(e, res);
   }
 });
 
@@ -77,7 +82,7 @@ app.post("/api/profile/convert", authenticate, async (req, res, next) => {
     });
     res.send(resp.toJSON());
   } catch (e) {
-    handleError(e);
+    handleError(e, res);
   }
 });
 
@@ -88,7 +93,7 @@ app.post("/api/profile/transfer", authenticate, async (req, res, next) => {
     const resp = await user.transfer({ ...req.body });
     res.send(resp);
   } catch (e) {
-    handleError(e);
+    handleError(e, res);
   }
 });
 
@@ -101,7 +106,7 @@ app.post("/api/add-money", authenticate, async (req, res, next) => {
     });
     res.send(resp);
   } catch (e) {
-    handleError(e);
+    handleError(e, res);
   }
 });
 

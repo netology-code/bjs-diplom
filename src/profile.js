@@ -46,7 +46,7 @@ const ProfileSchema = new mongoose.Schema({
   }
 });
 
-ProfileSchema.methods.addMoney = async function(currency, amount) {
+ProfileSchema.methods.addMoney = async function({ currency, amount }) {
   const allowedCurrencies = ["RUB", "USD", "EUR"];
   if (allowedCurrencies.indexOf(currency) === -1) {
     throw {

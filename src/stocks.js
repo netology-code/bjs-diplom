@@ -34,7 +34,7 @@ class Market {
   stop() {
     this.work = false;
   }
-  start(interval = 3000) {
+  start(interval = 60 * 15 * 1000) {
     this.work = true;
 
     this.refreshIntervalId = setInterval(() => {

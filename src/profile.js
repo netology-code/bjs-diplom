@@ -69,6 +69,30 @@ ProfileSchema.methods.checkAmount = function(currency) {
   return this.wallet[currency];
 };
 
+ProfileSchema.methods.transfer = async function({ to, amount }) {
+  const toUser = await Profile.findOne({ username: to });
+  if (!toUser) {
+    throw {
+      code: 404,
+      message: `No user with such username: ${to}`
+    };
+  }
+
+  const isEnoughMoney = this.checkAmount("NETCOIN");
+
+  if (!isEnoughMoney) {
+    throw {
+      code: 400,
+      message: "Not enough money"
+    };
+  } else {
+    this.wallet.NETCOIN = Number(this.wallet.NETCOIN) - Number(amount);
+    toUser.wallet.NETCOIN = Number(toUser.wallet.NETCOIN) + Number(amount);
+    await toUser.save();
+    return await this.save();
+  }
+};
+
 ProfileSchema.methods.convertCurrency = async function({
   fromCurrency,
   targetCurrency,

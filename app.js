@@ -70,7 +70,7 @@ app.post("/api/profile/login", async (req, res, next) => {
   }
 });
 
-app.post("/api/profile/convert", authenticate, async (req, res, next) => {
+app.post("/api/wallet/convert", authenticate, async (req, res, next) => {
   const user = req._user;
 
   try {
@@ -86,7 +86,7 @@ app.post("/api/profile/convert", authenticate, async (req, res, next) => {
   }
 });
 
-app.post("/api/profile/transfer", authenticate, async (req, res, next) => {
+app.post("/api/wallet/transfer", authenticate, async (req, res, next) => {
   const user = req._user;
 
   try {
@@ -97,7 +97,7 @@ app.post("/api/profile/transfer", authenticate, async (req, res, next) => {
   }
 });
 
-app.post("/api/add-money", authenticate, async (req, res, next) => {
+app.post("/api/wallet/add-money", authenticate, async (req, res, next) => {
   const user = req._user;
 
   try {

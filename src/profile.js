@@ -3,7 +3,7 @@ const mongoose = require('mongoose'),
     cryptoRandomString = require('crypto-random-string');
 
 mongoose.connect(
-    'mongodb://localhost:27017/netology',
+    'mongodb://mongo:27017/netology',
     {
         useNewUrlParser: true,
     }

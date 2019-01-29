@@ -1,4 +1,12 @@
 class ApiConnector {
+    /**
+     * Tries to parse response body if it exists
+     *
+     * @static
+     * @param {*} response body of response (empty object if does not exist)
+     * @returns {Promise<Object>} parsed body
+     * @memberof ApiConnector
+     */
     static async _parseResponseBody(response) {
         try {
             return { response, responseBody: await response.json() };
@@ -6,6 +14,15 @@ class ApiConnector {
             return { responseBody: {}, response };
         }
     }
+
+    /**
+     * Sends a login call
+     *
+     * @static
+     * @param {*} { username, password }
+     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @memberof ApiConnector
+     */
     static performLogin({ username, password }, callback) {
         const asyncPart = async () => {
             const body = JSON.stringify({
@@ -35,6 +52,14 @@ class ApiConnector {
             });
     }
 
+    /**
+     * Sends a call to create a user with a given parameters
+     *
+     * @static
+     * @param {*} { username, name: { firstName, lastName }, password }
+     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @memberof ApiConnector
+     */
     static createUser(
         {
             username,
@@ -72,6 +97,14 @@ class ApiConnector {
             });
     }
 
+    /**
+     * Sends a call to transfer money from a logged in user and a user mentioned in parameters
+     *
+     * @static
+     * @param {*} { to, amount }
+     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @memberof ApiConnector
+     */
     static transferMoney({ to, amount }, callback) {
         const asyncPart = async () => {
             const body = JSON.stringify({ to, amount });
@@ -98,6 +131,15 @@ class ApiConnector {
                 callback(e, null);
             });
     }
+
+    /**
+     * Sends a call to add money to a logged in user
+     *
+     * @static
+     * @param {*} { currency, amount }
+     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @memberof ApiConnector
+     */
     static addMoney({ currency, amount }, callback) {
         const asyncPart = async () => {
             const body = JSON.stringify({ currency, amount });
@@ -124,6 +166,15 @@ class ApiConnector {
                 callback(e, null);
             });
     }
+
+    /**
+     * Sends a call to convert money of a logged in user from one currency to another based on stocks
+     *
+     * @static
+     * @param {*} { fromCurrency, targetCurrency, targetAmount }
+     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @memberof ApiConnector
+     */
     static convertMoney({ fromCurrency, targetCurrency, targetAmount }, callback) {
         const asyncPart = async () => {
             const body = JSON.stringify({ fromCurrency, targetCurrency, targetAmount });
@@ -150,6 +201,14 @@ class ApiConnector {
                 callback(e, null);
             });
     }
+
+    /**
+     * Sends a call to get stocks (last 100 entries)
+     *
+     * @static
+     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @memberof ApiConnector
+     */
     static getStocks(callback) {
         const asyncPart = async () => {
             const response = await fetch('/api/stocks', {

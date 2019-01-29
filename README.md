@@ -4,7 +4,24 @@
 
 ## Подготовка к выполнению
 
-...
+### Начало работы
+
+1. Установите [Docker](https://docs.docker.com/install/) для своей операционной системы
+1. Перед началом работы выполните следующие команды в командной строке:
+    - `docker network create netcoin-network`
+    - `docker run --name mongo -d -p 27017:27017 --network netcoin-network mongo`
+    - `docker build -t netcoin-node .`
+    - `docker run --name netcoin-api -d -p 1337:1337 --network netcoin-network netcoin-node`
+1. Перейдите по [ссылке](http://localhost:1337) и убедитесь, что видите надпись **Биржа "Неткоин"**
+1. В папке с проектом лежит файл `./static/main.js`. Задание следует выполнять в нем.
+
+### Конец работы
+
+1. Чтобы выключить приложение, выполните следующие команды в командной строке:
+    - `docker network rm netcoin-network`
+    - `docker rm -f mongo`
+    - `docker rm -f netcoin-node`
+1. Перейдите по [ссылке](http://localhost:1337) и убедитесь, что не видите надпись **Биржа "Неткоин"**
 
 ## Задание
 

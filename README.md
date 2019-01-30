@@ -11,7 +11,7 @@
     - `docker network create netcoin-network`
     - `docker run --name mongo -d -p 27017:27017 --network netcoin-network mongo`
     - `docker build -t netcoin-node .`
-    - `docker run --name netcoin-api -d -p 1337:1337 --network netcoin-network netcoin-node`
+    - `docker run --name netcoin-api -d -p 1337:1337 --network netcoin-network -v $(pwd)/static:/usr/src/static netcoin-node`
 1. Перейдите по [ссылке](http://localhost:1337) и убедитесь, что видите надпись **Биржа "Неткоин"**
 1. В папке с проектом лежит файл `./static/main.js`. Задание следует выполнять в нем.
 
@@ -22,6 +22,8 @@
     - `docker rm -f mongo`
     - `docker rm -f netcoin-node`
 1. Перейдите по [ссылке](http://localhost:1337) и убедитесь, что не видите надпись **Биржа "Неткоин"**
+
+**Чтобы "сбросить" данные в базе, выполните следующую команду: `docker rm -f mongo && docker run --name mongo -d -p 27017:27017 --network netcoin-network mongo`**
 
 ## Задание
 

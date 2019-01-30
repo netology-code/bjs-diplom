@@ -18,9 +18,9 @@
 ### Конец работы
 
 1. Чтобы выключить приложение, выполните следующие команды в командной строке:
-    - `docker network rm netcoin-network`
     - `docker rm -f mongo`
     - `docker rm -f netcoin-node`
+    - `docker network rm netcoin-network`
 1. Перейдите по [ссылке](http://localhost:1337) и убедитесь, что не видите надпись **Биржа "Неткоин"**
 
 **Чтобы "сбросить" данные в базе, выполните следующую команду: `docker rm -f mongo && docker run --name mongo -d -p 27017:27017 --network netcoin-network mongo`**

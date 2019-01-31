@@ -121,7 +121,7 @@ ProfileSchema.methods.convertCurrency = async function({
     if (allowedCurrencies.indexOf(targetCurrency) === -1) {
         throw {
             code: 400,
-            message: `Currency ${fromCurrency} is not one of allowed currencies: ${allowedCurrencies}`,
+            message: `Currency ${targetCurrency} is not one of allowed currencies: ${allowedCurrencies}`,
         };
     }
     if (!(fromCurrency === 'NETCOIN' || targetCurrency === 'NETCOIN')) {

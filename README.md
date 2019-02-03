@@ -35,7 +35,9 @@
 
 ### 1. Начало работы
 
-1. Установите [Docker](https://docs.docker.com/install/) для своей операционной системы
+1. Склонируйте этот репозиторий.
+1. Установите [Docker](https://docs.docker.com/install/) для своей операционной системы.
+1. В командной строке перейдите в папку с репозиторием.
 1. Перед началом работы выполните следующие команды в командной строке:
     - `docker network create netcoin-network`
     - `docker run --name mongo -d -p 27017:27017 --network netcoin-network mongo`

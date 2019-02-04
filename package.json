@@ -4,7 +4,7 @@
   "description": "Дипломное задание к курсу «Основы JavaScript»",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,8 @@
     "crypto-random-string": "^1.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
-    "mongoose": "^5.4.5"
+    "mongoose": "^5.4.5",
+    "nodemon": "^1.18.9"
   },
   "prettier": {
     "singleQuote": true,

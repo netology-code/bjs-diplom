@@ -36,16 +36,31 @@
 
 ### Начало работы
 
-1. Установите [Docker](https://docs.docker.com/install/) для своей операционной системы
-1. Перед началом работы выполните следующие команды в командной строке:
-    - `docker network create netcoin-network`
-    - `docker run --name mongo -d -p 27017:27017 --network netcoin-network mongo`
-    - `docker build -t netcoin-node .`
-    - `docker run --name netcoin-api -d -p 1337:1337 --network netcoin-network -v $(pwd)/static:/usr/src/static netcoin-node`
+1. Установите [MongoDB Community Server](https://www.mongodb.com/download-center/community) для своей операционной системы и запустите базу данных
+1. Установите [NodeJS](https://nodejs.org/en/) для своей операционной системы
+1. Склонируйте данный репозиторий
+1. Откройте терминал и перейдите в папку со склонированным репозиторием
+1. Выполните команду `npm install`
+1. Выполните команду `npm i -g nodemon`
+
+### Запуск сервера
+
+1. Чтобы запустить сервер для биржи, выполните команду `npm start` из терминала в папке с репозиторием. Убедитесь, что в консоли в увидели надпись `App is listening on port 1337`.
 1. Перейдите по [ссылке](http://localhost:1337) и убедитесь, что видите надпись **Биржа "Неткоин"**
 1. В папке с проектом лежит файл `./static/main.js`. Задание следует выполнять в нем.
 
-**Чтобы "сбросить" данные в базе, выполните следующую команду: `docker rm -f mongo && docker run --name mongo -d -p 27017:27017 --network netcoin-network mongo`**
+**Чтобы остановить работу сервера, нажмите комбинацию `Ctrl+C в терминале`**
+
+### Просмотр записей в базе данных
+
+Чтобы посмотреть созданных вами пользователей и их данные:
+
+1. Установите программу [Robo 3T](https://studio3t.com/download-now/)
+1. Запустите программу и создайте новое подключение со следующими параметрами:
+    - Type: Direct connection
+    - Name: Netcoin
+    - Address: localhost:27017
+1. Подключитесь к БД, используя данное подключение.
 
 ### Решение первой части задания
 

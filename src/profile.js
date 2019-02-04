@@ -2,12 +2,9 @@ const mongoose = require('mongoose'),
     createHash = require('create-hash'),
     cryptoRandomString = require('crypto-random-string');
 
-mongoose.connect(
-    'mongodb://mongo:27017/netology',
-    {
-        useNewUrlParser: true,
-    }
-);
+mongoose.connect('mongodb://127.0.0.1:27017/netology', {
+    useNewUrlParser: true,
+});
 
 const ProfileSchema = new mongoose.Schema({
     name: {

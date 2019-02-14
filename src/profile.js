@@ -1,9 +1,16 @@
 const mongoose = require('mongoose'),
     createHash = require('create-hash'),
-    cryptoRandomString = require('crypto-random-string');
+    cryptoRandomString = require('crypto-random-string'),
+    { Mockgoose } = require('mockgoose'),
+    mockgoose = new Mockgoose(mongoose);
 
-mongoose.connect('mongodb://127.0.0.1:27017/netology', {
-    useNewUrlParser: true,
+mockgoose.prepareStorage().then(() => {
+    mongoose.connect('mongodb://127.0.0.1:27017/netology', {
+        useNewUrlParser: true,
+    });
+    mongoose.connection.on('connected', () => {
+        console.log('db connection is now open');
+    });
 });
 
 const ProfileSchema = new mongoose.Schema({

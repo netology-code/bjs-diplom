@@ -1,0 +1,58 @@
+###
+
+POST http://localhost:1337/api/profile/create
+Content-Type: application/json
+
+{
+    "username": "another",
+    "name": {
+        "firstName": "Ivan",
+        "lastName": "Blacky"
+    },
+    "password": "superSecret"
+}
+
+###
+
+POST http://localhost:1337/api/profile/login
+Content-Type: application/json
+
+{
+    "username": "ivan-blacky",
+    "password": "superSecret"
+}
+
+###
+
+POST http://localhost:1337/api/wallet/convert
+Content-Type: application/json
+Cookie: "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjp7ImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6IkJsYWNreSJ9LCJ3YWxsZXQiOnsiUlVCIjo2NTk5OTkuODU3MTQyODU3LCJVU0QiOjAsIkVVUiI6MCwiTkVUQ09JTiI6NjAwfSwiX2lkIjoiNWM0NTk1MzcwYTBmZDE3MmNiYWZkMGNiIiwidXNlcm5hbWUiOiJpdmFuLWJsYWNreSIsInBhc3N3b3JkIjoiYTBhNWE1YWUyODg0M2RhNzkxMDI3ODE4MzliYTgzMGIwOGViOWFhOSIsInNhbHQiOiJiOTkwODEzMWVlZGU1MjNkIiwiX192IjowLCJpYXQiOjE1NDgwODE2Njh9.0gNF7i_NC1Mgm7Z8EIz-F1lI-c7RIKKwaOud9yO50ig"
+
+{
+    "username": "ivan-blacky",
+    "fromCurrency": "RUB",
+    "targetCurrency": "NETCOIN",
+    "targetAmount": "100"
+    }
+
+###
+
+POST http://localhost:1337/api/wallet/transfer
+Content-Type: application/json
+Cookie: "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjp7ImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6IkJsYWNreSJ9LCJ3YWxsZXQiOnsiUlVCIjo2NTk5OTkuODU3MTQyODU3LCJVU0QiOjAsIkVVUiI6MCwiTkVUQ09JTiI6NjAwfSwiX2lkIjoiNWM0NTk1MzcwYTBmZDE3MmNiYWZkMGNiIiwidXNlcm5hbWUiOiJpdmFuLWJsYWNreSIsInBhc3N3b3JkIjoiYTBhNWE1YWUyODg0M2RhNzkxMDI3ODE4MzliYTgzMGIwOGViOWFhOSIsInNhbHQiOiJiOTkwODEzMWVlZGU1MjNkIiwiX192IjowLCJpYXQiOjE1NDgwODE2Njh9.0gNF7i_NC1Mgm7Z8EIz-F1lI-c7RIKKwaOud9yO50ig"
+
+{
+    "to": "another",
+    "amount": "100"
+    }
+
+
+###
+POST http://localhost:1337/api/walllet/add-money
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjp7ImZpcnN0TmFtZSI6Ikl2YW4iLCJsYXN0TmFtZSI6IkJsYWNreSJ9LCJ3YWxsZXQiOnsiUlVCIjo2NTk5OTkuODU3MTQyODU3LCJVU0QiOjAsIkVVUiI6MCwiTkVUQ09JTiI6NjAwfSwiX2lkIjoiNWM0NTk1MzcwYTBmZDE3MmNiYWZkMGNiIiwidXNlcm5hbWUiOiJpdmFuLWJsYWNreSIsInBhc3N3b3JkIjoiYTBhNWE1YWUyODg0M2RhNzkxMDI3ODE4MzliYTgzMGIwOGViOWFhOSIsInNhbHQiOiJiOTkwODEzMWVlZGU1MjNkIiwiX192IjowLCJpYXQiOjE1NDgwODE2Njh9.0gNF7i_NC1Mgm7Z8EIz-F1lI-c7RIKKwaOud9yO50ig
+
+{
+    "currency": "RUB",
+    "amount": "1"
+    }

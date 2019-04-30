@@ -4,7 +4,8 @@
   "description": "Дипломное задание к курсу «Основы JavaScript»",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js & mocha & open http://localhost:1337/",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -50,5 +51,8 @@
         }
       }
     ]
+  },
+  "devDependencies": {
+    "mocha": "^6.1.4"
   }
 }

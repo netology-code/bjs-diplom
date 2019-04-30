@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Тесты для биржы «Неткоин»</title>
+	<link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+</head>
+<body>
+<div id="mocha"></div>
+
+<script src="../main.js"></script>
+<script>main()</script>
+
+<script src="http://chaijs.com/chai.js"></script>
+<script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+
+<script>
+	mocha.setup('bdd')</script>
+<script src="profile.spec.js"></script>
+<script>
+	const expect = chai.expect;
+	//mocha.checkLeaks();
+	mocha.run();
+</script>
+</body>
+</html>

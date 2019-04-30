@@ -1,6 +1,6 @@
 class ApiConnector {
     /**
-     * Tries to parse response body if it exists
+     * Пробует парсить тело ответа, если оно существует
      *
      * @static
      * @param {*} response body of response (empty object if does not exist)
@@ -16,11 +16,11 @@ class ApiConnector {
     }
 
     /**
-     * Sends a login call
+     * Отправляет запрос на авторизацию пользователя
      *
      * @static
      * @param {*} { username, password }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static performLogin({ username, password }, callback) {
@@ -53,11 +53,11 @@ class ApiConnector {
     }
 
     /**
-     * Sends a call to create a user with a given parameters
+     * Отправляет запрос на создание пользователя с переданными параметрами
      *
      * @static
      * @param {*} { username, name: { firstName, lastName }, password }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static createUser(
@@ -98,11 +98,11 @@ class ApiConnector {
     }
 
     /**
-     * Sends a call to transfer money from a logged in user and a user mentioned in parameters
+     * Отправляет запрос на перевод денег авторизованного пользователя тому пользователю, чье имя передано
      *
      * @static
      * @param {*} { to, amount }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static transferMoney({ to, amount }, callback) {
@@ -133,11 +133,11 @@ class ApiConnector {
     }
 
     /**
-     * Sends a call to add money to a logged in user
+     * Отправляет запрос на добавление денег авторизованному пользователю
      *
      * @static
      * @param {*} { currency, amount }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static addMoney({ currency, amount }, callback) {
@@ -168,11 +168,11 @@ class ApiConnector {
     }
 
     /**
-     * Sends a call to convert money of a logged in user from one currency to another based on stocks
+     * Отправляет запрос на конвертацию денег авторизованного пользователя из одной валюты в другую
      *
      * @static
      * @param {*} { fromCurrency, targetCurrency, targetAmount }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static convertMoney({ fromCurrency, targetCurrency, targetAmount }, callback) {
@@ -203,10 +203,10 @@ class ApiConnector {
     }
 
     /**
-     * Sends a call to get stocks (last 100 entries)
+     * Отправляет запрос на получение курсов валют (последние 100 записей)
      *
      * @static
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static getStocks(callback) {

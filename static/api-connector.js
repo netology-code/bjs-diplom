@@ -1,6 +1,6 @@
 class ApiConnector {
     /**
-     * Tries to parse response body if it exists
+     * Пробует парсить тело ответа, если оно существует
      *
      * @static
      * @param {*} response body of response (empty object if does not exist)
@@ -20,7 +20,7 @@ class ApiConnector {
      *
      * @static
      * @param {*} { username, password }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static performLogin({ username, password }, callback) {
@@ -57,7 +57,7 @@ class ApiConnector {
      *
      * @static
      * @param {*} { username, name: { firstName, lastName }, password }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static createUser(
@@ -102,7 +102,7 @@ class ApiConnector {
      *
      * @static
      * @param {*} { to, amount }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static transferMoney({ to, amount }, callback) {
@@ -137,7 +137,7 @@ class ApiConnector {
      *
      * @static
      * @param {*} { currency, amount }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static addMoney({ currency, amount }, callback) {
@@ -172,7 +172,7 @@ class ApiConnector {
      *
      * @static
      * @param {*} { fromCurrency, targetCurrency, targetAmount }
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static convertMoney({ fromCurrency, targetCurrency, targetAmount }, callback) {
@@ -206,7 +206,7 @@ class ApiConnector {
      * Отправляет запрос на получение курсов валют (последние 100 записей)
      *
      * @static
-     * @param {Function} callback function with `error` as a first param (null if no errors) and body `data` as a second param
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
     static getStocks(callback) {

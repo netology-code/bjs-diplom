@@ -106,8 +106,9 @@
 
 ```javascript
 addMoney({ currency, amount }, callback) {
+        console.log(`Adding ${amount} of ${currency} to ${this.username}`);
         return ApiConnector.addMoney({ currency, amount }, (err, data) => {
-            console.log(`Adding ${amount} of ${currency} to ${this.username}`);
+            console.log(`Added ${amount} of ${currency} to ${this.username}`);
             callback(err, data);
         });
     }

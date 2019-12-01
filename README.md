@@ -158,7 +158,7 @@ function main(){
         if (err) {
                 console.error('Error during adding money to Ivan');
         } else {
-                console.log(`Added 500000 euros to Ivan`);
+                console.log(`Added 100 rubles to Ivan`);
         });
 }
 

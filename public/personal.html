@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>BJS Exchange</title>
+    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.min.css">
+  </head>
+<body>
+
+<div class="ui container">
+  <h1 class="ui header neon">Биржа <span class="flicker">Неткоин</span>ов</h1>
+  <div class="ui grid">
+    <div class="column four wide">
+      <div class="ui segment">
+        <h2>Курсы валют</h2>
+        
+        <table class="ui left aligned striped celled table">
+        <thead>
+          <tr>
+            <th class="left aligned">Код</th>
+            <th>Курс</th>
+          </tr>
+        </thead>           
+          <tbody>
+            <tr>
+              <td>EUR – NTC</td>
+              <td data-eur-ntc="1.132">1.132</td>
+            </tr>
+            <tr>
+              <td>EUR – USD</td>
+              <td data-eur-usd="1.110">1.110</td>
+            </tr>
+            <tr>
+              <td>EUR – RUB</td>
+              <td data-eur-rub="64.221">64.221</td>
+            </tr>
+            <tr>
+              <td>USD – NTC</td>
+              <td data-usd-ntc="0.674">0.674</td>
+            </tr>
+            <tr>
+              <td>USD – EUR</td>
+              <td data-usd-eur="0.994">0.994</td>
+            </tr>
+            <tr>
+              <td>USD – RUB</td>
+              <td data-usd-rub="62.555">62.555</td>
+            </tr> 
+            <tr>
+              <td>RUB – NTC</td>
+              <td data-rub-ntc="0.023">0.023</td>
+            </tr>
+            <tr>
+              <td>RUB – EUR</td>
+              <td data-rub-eur="0.014">0.014</td>
+            </tr>
+            <tr>
+              <td>RUB – USD</td>
+              <td data-rub-usd="0.015">0.015</td>
+            </tr> 
+            <tr>
+              <td>NTC – EUR</td>
+              <td data-ntc-eur="0.862">0.862</td>
+            </tr>
+            <tr>
+              <td>NTC – USD</td>
+              <td data-ntc-usd="1.222">1.222</td>
+            </tr>
+            <tr>
+              <td>NTC – RUB</td>
+              <td data-ntc-rub="1.982">1.982</td>
+            </tr>             
+          </tbody>
+        </table>        
+        
+      </div>
+    </div>
+    <div class="column seven wide">
+      <div class="ui stacked segment">
+        <h2>Ваш профиль</h2>
+        <dl class="ui list">
+          <div class="column">
+            <div class="item">
+              <dt class="header">ID</dt>
+              <dd class="description" data-user-id="125">125</dd>          
+            </div>
+            <div class="item">
+              <dt class="header">Имя</dt>
+              <dd class="description" data-user-name="konstantinopole">konstantinopole</dd>
+            </div> 
+          </div>  
+          <div class="column">
+            <div class="item">  
+              <dt class="header">Кошелёк</dt>
+              <dd class="description">
+                <ul>
+                  <li data-user-wallet-rub="60000">60 000</li>
+                  <li data-user-wallet-eur="0">0</li>
+                  <li data-user-wallet-usd="1000000000">1 000 000 000</li>
+                  <li data-user-wallet-ntc="0">0</li>
+                </ul>
+              </dd>
+            </div>
+          </div>           
+        </dl>  
+        
+      </div>
+      <div class="ui stacked segment">
+        <h2>Пополнение счёта</h2>
+        <form class="ui large form">
+          <div class="field">
+            <div class="ui action input fluid">
+              <input type="text" placeholder="Сумма">
+              <select class="ui selection compact dropdown">
+                <option value="">Валюта</option>
+                <option value="RUB">RUB</option>
+                <option value="NTC">NTC</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>
+              <div class="ui button violet">Пополнить</div>
+            </div>    
+          </div>
+        </form>
+      </div>
+      <div class="ui stacked segment">
+        <h2>Конвертация валют</h2>
+        <form class="ui large form">
+          <div class="field">
+            <div class="ui action input fluid">
+              <input type="text" placeholder="Сумма">         
+              <select class="ui selection compact dropdown">
+                <option value="">Из</option>
+                <option value="RUB">RUB</option>
+                <option value="NTC">NTC</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>
+              <select class="ui selection compact dropdown">
+                <option value="">В</option>
+                <option value="RUB">RUB</option>
+                <option value="NTC">NTC</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>              
+              <div class="ui button violet">Конвертировать</div>
+            </div>    
+          </div>
+        </form>        
+      </div>
+      <div class="ui stacked segment">
+        <h2>Перевод средств</h2>
+        <form class="ui large form">
+          
+          <div class="field">
+            <div class="ui action input fluid labeled">
+              <div class="ui label">
+                Кому:
+              </div>
+              <select class="ui selection dropdown fluid">
+                <option value="">Выберите пользователя</option>
+                <option value="01">Князь Милославский</option>
+                <option value="12">Иван Васильевич Грозный</option>
+              </select> 
+            </div>
+          </div>
+          
+          <div class="field">
+            <div class="ui action input fluid">
+              <input type="text" placeholder="Сумма">         
+              <select class="ui selection compact dropdown">
+                <option value="">Валюта</option>
+                <option value="RUB">RUB</option>
+                <option value="NTC">NTC</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>             
+              <div class="ui button violet">Перевести</div>
+            </div>    
+          </div>
+        </form>         
+      </div>
+      <div class="ui message fluid negative">Невозможно конвертировать из RUB в RUB.</div>
+    </div>
+    <div class="column five wide">
+      <div class="ui segment">
+        <h2>Адресная книга</h2>
+        
+        <table class="ui left aligned striped celled table addresses">
+        <thead>
+          <tr>
+            <th class="left aligned">ID</th>
+            <th>Имя</th>
+            <th></th>
+          </tr>
+        </thead>          
+          <tbody>
+            <tr>
+              <td data-addressee-id="01">01</td>
+              <td data-addressee-name="Князь Милославский">Князь Милославский</td>
+              <td>
+                <button class="ui purple icon button mini">
+                  <i class="trash icon"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td data-addressee-id="2222">2222</td>
+              <td data-addressee-name="Иван Васильевич Грозный">Иван Васильевич Грозный</td>
+              <td>
+                <button class="ui purple icon button mini">
+                  <i class="trash icon"></i>
+                </button>
+              </td>              
+            </tr>           
+          </tbody>
+        </table>          
+        
+        <form class="ui large form new-contact">      
+          <div class="ui action fluid">
+            <div class="ui input">
+              <input type="text" placeholder="ID"> 
+            </div>         
+            <div class="ui input">
+              <input type="text" placeholder="Имя "> 
+            </div>
+          </div>
+          <div class="ui bottom attached button fluid violet">Добавить</div>
+        </form>        
+      </div>
+      
+      <div class="ui message fluid positive">Пользователь добавлен в адресную книгу.</div>
+    </div>
+  </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>
+
+<script>
+  $('.ui.dropdown')
+    .dropdown()
+  ;
+</script>  
+  
+</body>
+</html>

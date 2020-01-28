@@ -142,6 +142,98 @@ class ApiConnector {
     }
 
     /**
+     * Отправляет запрос на получение списка избранного
+     *
+     * @static
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
+     * @memberof ApiConnector
+     */
+    static getFavorites(callback) {
+        const asyncPart = async () => {
+
+            const response = await fetch('favorites/', {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'},
+            });
+            return await ApiConnector._parseResponseBody(response);
+        };
+        asyncPart()
+            .then(({ response, responseBody }) => {
+                if (response.ok) {
+                    callback(null, responseBody);
+                } else {
+                    callback(responseBody, null);
+                }
+            })
+            .catch(e => {
+                console.error("Ошибка: ", e);
+                callback(e, null);
+            });
+    }
+
+    /**
+     * Отправляет запрос на добавление пользователя в список избранного
+     *
+     * @static
+     * @param {*} { id, name }
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
+     * @memberof ApiConnector
+     */
+    static addUserToFavorites({id, name}, callback) {
+        const asyncPart = async () => {
+            const response = await fetch('favorites/add', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({id, name})
+            });
+            return await ApiConnector._parseResponseBody(response);
+        };
+        asyncPart()
+            .then(({ response, responseBody }) => {
+                if (response.ok) {
+                    callback(null, responseBody);
+                } else {
+                    callback(responseBody, null);
+                }
+            })
+            .catch(e => {
+                console.error("Ошибка: ", e);
+                callback(e, null);
+            });
+    }
+
+    /**
+     * Отправляет запрос на удаление пользователя из списка избранного
+     *
+     * @static
+     * @param {*} id
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
+     * @memberof ApiConnector
+     */
+    static removeUserFromFavorites(id, callback) {
+        const asyncPart = async () => {
+            const response = await fetch('favorites/remove', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({id})
+            });
+            return await ApiConnector._parseResponseBody(response);
+        };
+        asyncPart()
+            .then(({ response, responseBody }) => {
+                if (response.ok) {
+                    callback(null, responseBody);
+                } else {
+                    callback(responseBody, null);
+                }
+            })
+            .catch(e => {
+                console.error("Ошибка: ", e);
+                callback(e, null);
+            });
+    }
+
+    /**
      * Отправляет запрос на перевод денег авторизованного пользователя тому пользователю, чье имя передано
      *
      * @static

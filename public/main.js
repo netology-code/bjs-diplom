@@ -51,11 +51,14 @@ const getStocks = (callback) => {
 
 //getStocks((err, data) => console.log(data))
 
-//Profile.login({login: "oleg@demo.ru", password: "demo"}, (err, data) => console.log(data));
+Profile.login({login: "oleg@demo.ru", password: "demo"}, (err, data) => console.log(data));
 
 //Profile.register({login: "test@demo.ru", password: "test"}, (err, data) => console.log(data));
-
 //ApiConnector.current((err, data) => console.log(data));
-
 //ApiConnector.logout((err, data) => console.log(data));
-//setInterval(() => , 5000);
+
+
+// FAVORITES:
+// ApiConnector.getFavorites((err, data) => console.log(data));
+// ApiConnector.addUserToFavorites({id:"1", name: "Братан"}, (err, data) => console.log(data));
+// ApiConnector.removeUserFromFavorites("1", (err, data) => console.log(data));

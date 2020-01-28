@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const request = require('request');
 const user = require('./user');
+const favorites = require('./favorites');
 
 router.use('/user', user);
+router.use('/favorites', favorites);
 
 router.get("/stocks", function(requestData, responseData) {
     const url = 'https://www.cbr-xml-daily.ru/daily_json.js';

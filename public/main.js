@@ -49,7 +49,7 @@ const getStocks = (callback) => {
   })
 }
 
-//getStocks((err, data) => console.log(data))
+getStocks((err, data) => console.log(data))
 
 Profile.login({login: "oleg@demo.ru", password: "demo"}, (err, data) => console.log(data));
 
@@ -62,3 +62,7 @@ Profile.login({login: "oleg@demo.ru", password: "demo"}, (err, data) => console.
 // ApiConnector.getFavorites((err, data) => console.log(data));
 // ApiConnector.addUserToFavorites({id:"1", name: "Братан"}, (err, data) => console.log(data));
 // ApiConnector.removeUserFromFavorites("1", (err, data) => console.log(data));
+
+// MONEY:
+// ApiConnector.addMoney({currency: "USD", amount: 10}, (err, data) => console.log(data));
+// ApiConnector.transferMoney({to: "2", currency: "USD", amount: 10}, (err, data) => console.log(data));

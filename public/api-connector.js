@@ -241,17 +241,14 @@ class ApiConnector {
      * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
-/*    static transferMoney({ to, amount }, callback) {
+    static transferMoney({ to, currency, amount }, callback) {
         const asyncPart = async () => {
-            const body = JSON.stringify({ to, amount });
+            const body = JSON.stringify({ to, currency, amount });
 
-            const response = await fetch('/api/wallet/transfer', {
+            const response = await fetch('/money/transfer', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: {'Content-Type': 'application/json'},
                 body,
-                credentials: 'include',
             });
             return await ApiConnector._parseResponseBody(response);
         };
@@ -264,9 +261,10 @@ class ApiConnector {
                 }
             })
             .catch(e => {
+                console.error("Ошибка: ", e); 
                 callback(e, null);
             });
-    }*/
+    }
 
     /**
      * Отправляет запрос на добавление денег авторизованному пользователю
@@ -276,17 +274,14 @@ class ApiConnector {
      * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
-/*    static addMoney({ currency, amount }, callback) {
+    static addMoney({ currency, amount }, callback) {
         const asyncPart = async () => {
             const body = JSON.stringify({ currency, amount });
 
-            const response = await fetch('/api/wallet/add-money', {
+            const response = await fetch('/money/add', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: {'Content-Type': 'application/json'},
                 body,
-                credentials: 'include',
             });
             return await ApiConnector._parseResponseBody(response);
         };
@@ -299,9 +294,10 @@ class ApiConnector {
                 }
             })
             .catch(e => {
+                console.error("Ошибка: ", e); 
                 callback(e, null);
             });
-    }*/
+    }
 
     /**
      * Отправляет запрос на конвертацию денег авторизованного пользователя из одной валюты в другую

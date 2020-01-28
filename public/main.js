@@ -66,3 +66,11 @@ Profile.login({login: "oleg@demo.ru", password: "demo"}, (err, data) => console.
 // MONEY:
 // ApiConnector.addMoney({currency: "USD", amount: 10}, (err, data) => console.log(data));
 // ApiConnector.transferMoney({to: "2", currency: "USD", amount: 10}, (err, data) => console.log(data));
+/*ApiConnector.convertMoney(
+  {fromCurrency: "RUB", targetCurrency: "USD", fromAmount: 150 },
+  (err, data) => console.log(data)
+);*/
+/*ApiConnector.convertMoney(
+  {fromCurrency: "RUB", targetCurrency: "USD", fromAmount: 15000 },
+  (err, data) => console.log(data)
+);*/

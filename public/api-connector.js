@@ -303,21 +303,18 @@ class ApiConnector {
      * Отправляет запрос на конвертацию денег авторизованного пользователя из одной валюты в другую
      *
      * @static
-     * @param {*} { fromCurrency, targetCurrency, targetAmount }
+     * @param {*} { fromCurrency, targetCurrency, fromAmount }
      * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
-/*    static convertMoney({ fromCurrency, targetCurrency, targetAmount }, callback) {
+    static convertMoney({ fromCurrency, targetCurrency, fromAmount }, callback) {
         const asyncPart = async () => {
-            const body = JSON.stringify({ fromCurrency, targetCurrency, targetAmount });
+            const body = JSON.stringify({ fromCurrency, targetCurrency, fromAmount });
 
-            const response = await fetch('/api/wallet/convert', {
+            const response = await fetch('/money/convert', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body,
-                credentials: 'include',
+                headers: {'Content-Type': 'application/json'},
+                body
             });
             return await ApiConnector._parseResponseBody(response);
         };
@@ -332,7 +329,7 @@ class ApiConnector {
             .catch(e => {
                 callback(e, null);
             });
-    }*/
+    }
 
     /**
      * Отправляет запрос на получение курсов валют (последние 100 записей)

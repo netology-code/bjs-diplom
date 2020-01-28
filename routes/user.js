@@ -12,59 +12,66 @@ const adapter = new FileSync('db.json');
 const db = low(adapter);
 
 router.post("/register",upload.none(), function(request, response) {
-    const { name, email, password } = request.body;
-    error = {};
-    if(name === "")
-        error.name = [ 'Поле Имя обязательно для заполнения.' ];
-
-    if(email === "")
-        error.email = [ 'Поле E-Mail адрес для заполнения.' ];
+    const { login, password } = request.body;
+    error = "";
+    if(login === "")
+        error += 'Поле "Логин" обязательно для заполнения.';
 
     if(password === "")
-        error.password = [ 'Поле Пароль обязательно для заполнения.' ];
+        error += ' Поле "Пароль" обязательно для заполнения.';
     
-    if(JSON.stringify(error) !== "{}")
+    if(error !== "")
         response.json({ success: false, error});
 
-    let user = db.get("users").find({email}).value();
+    let user = db.get("users").find({login}).value();
     if(!user){
         user = { 
             created_at: new Date().toISOString(), 
-            name, 
-            email, 
+            login, 
             password, 
-            id:uniqid(), 
-            isAuthorized:true,
+            id: uniqid(), 
             balance: {RUB: 0, USD: 0, EUR: 0, NTC: 0}
         };
         db.get("users").push(user).write();
-        response.json({ success: true, user});
+        
+        request.session.authorized = true;
+        request.session.login = login;
+        response.json({ success: true, userId: user.id});
     }
     else{
-        response.json({ success: false, error: { email:`E-Mail адрес ${email} уже существует.`}});
+        response.json({ success: false, error: `Логин ${login} уже существует.`});
     }
 })
 
 router.post("/login",upload.none(), function(request, response) {
-    const { email, password } = request.body;
-    let user = db.get("users").find({email, password});
-    if(!!user.value()){
-        user.assign({isAuthorized: true}).write();
-        response.json({ success: true, user: user.value()});
+    const { login, password } = request.body;
+    let user = db.get("users").find({login, password}).value();
+    if(!!user){
+        request.session.authorized = true;
+        request.session.login = login;
+        response.json({ success: true, userId: user.id});
     }
     else
-        response.json({ success: false, error:`Пользователь c email ${email} и паролем ${password} не найден`});
+        response.json({ success: false, error:`Пользователь c login ${login} и указанным паролем не найден`});
 })
 
 router.post("/logout", function(request, response) {
-    db.get("users").find({isAuthorized: true}).assign({isAuthorized: false}).write();
-    response.json({ success: true});
+    if(request.session.authorized){
+        delete request.session.authorized;
+        delete request.session.login;
+        response.json({ success: true});
+    }else{
+        response.json({ success: false, error: `Пользователь не авторизован`});
+    }
 })
 
 router.get("/current", function(request, response) {
-    let user = db.get("users").find({isAuthorized: true});
-    let userValue = user.value();
-    response.json({ success: !!userValue, user: userValue });
+    let user = db.get("users").find({login: request.session.login}).value();
+    if(!!user){
+        response.json({ success: true, user});
+    }
+    else
+        response.json({ success: false, error: `Пользователь не авторизован`});
 })
 
 

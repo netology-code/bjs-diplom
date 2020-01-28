@@ -23,18 +23,13 @@ class ApiConnector {
      * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
-    static performLogin({ username, password }, callback) {
+    static login({ login, password }, callback) {
         const asyncPart = async () => {
-            const body = JSON.stringify({
-                username,
-                password,
-            });
+            const body = JSON.stringify({login,password});
 
-            const response = await fetch('/api/profile/login', {
+            const response = await fetch('/user/login', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: {'Content-Type': 'application/json'},
                 body,
             });
             return await ApiConnector._parseResponseBody(response);
@@ -48,6 +43,7 @@ class ApiConnector {
                 }
             })
             .catch(e => {
+                console.error("Ошибка: ", e);
                 callback(e, null);
             });
     }
@@ -56,30 +52,17 @@ class ApiConnector {
      * Отправляет запрос на создание пользователя с переданными параметрами
      *
      * @static
-     * @param {*} { username, name: { firstName, lastName }, password }
+     * @param {*} { username, password }
      * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
-    static createUser(
-        {
-            username,
-            name: { firstName, lastName },
-            password,
-        },
-        callback
-    ) {
+    static register({login, password}, callback) {
         const asyncPart = async () => {
-            const body = JSON.stringify({
-                username,
-                name: { firstName, lastName },
-                password,
-            });
+            const body = JSON.stringify({login, password});
 
-            const response = await fetch('/api/profile/create', {
+            const response = await fetch('user/register', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: {'Content-Type': 'application/json'},
                 body,
             });
             return await ApiConnector._parseResponseBody(response);
@@ -93,6 +76,67 @@ class ApiConnector {
                 }
             })
             .catch(e => {
+                console.error("Ошибка: ", e);
+                callback(e, null);
+            });
+    }
+
+    /**
+     * Отправляет запрос на получение текущего авторизованного пользователя
+     *
+     * @static
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
+     * @memberof ApiConnector
+     */
+    static current(callback) {
+        const asyncPart = async () => {
+
+            const response = await fetch('user/current', {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'},
+            });
+            return await ApiConnector._parseResponseBody(response);
+        };
+        asyncPart()
+            .then(({ response, responseBody }) => {
+                if (response.ok) {
+                    callback(null, responseBody);
+                } else {
+                    callback(responseBody, null);
+                }
+            })
+            .catch(e => {
+                console.error("Ошибка: ", e);
+                callback(e, null);
+            });
+    }
+
+    /**
+     * Отправляет запрос деавторизацию пользователя
+     *
+     * @static
+     * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
+     * @memberof ApiConnector
+     */
+    static logout(callback) {
+        const asyncPart = async () => {
+
+            const response = await fetch('user/logout', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+            });
+            return await ApiConnector._parseResponseBody(response);
+        };
+        asyncPart()
+            .then(({ response, responseBody }) => {
+                if (response.ok) {
+                    callback(null, responseBody);
+                } else {
+                    callback(responseBody, null);
+                }
+            })
+            .catch(e => {
+                console.error("Ошибка: ", e);
                 callback(e, null);
             });
     }
@@ -105,7 +149,7 @@ class ApiConnector {
      * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
-    static transferMoney({ to, amount }, callback) {
+/*    static transferMoney({ to, amount }, callback) {
         const asyncPart = async () => {
             const body = JSON.stringify({ to, amount });
 
@@ -130,7 +174,7 @@ class ApiConnector {
             .catch(e => {
                 callback(e, null);
             });
-    }
+    }*/
 
     /**
      * Отправляет запрос на добавление денег авторизованному пользователю
@@ -140,7 +184,7 @@ class ApiConnector {
      * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
-    static addMoney({ currency, amount }, callback) {
+/*    static addMoney({ currency, amount }, callback) {
         const asyncPart = async () => {
             const body = JSON.stringify({ currency, amount });
 
@@ -165,7 +209,7 @@ class ApiConnector {
             .catch(e => {
                 callback(e, null);
             });
-    }
+    }*/
 
     /**
      * Отправляет запрос на конвертацию денег авторизованного пользователя из одной валюты в другую
@@ -175,7 +219,7 @@ class ApiConnector {
      * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра (null если ошибки нет) и телом `data` в качестве второго параметра
      * @memberof ApiConnector
      */
-    static convertMoney({ fromCurrency, targetCurrency, targetAmount }, callback) {
+/*    static convertMoney({ fromCurrency, targetCurrency, targetAmount }, callback) {
         const asyncPart = async () => {
             const body = JSON.stringify({ fromCurrency, targetCurrency, targetAmount });
 
@@ -200,7 +244,7 @@ class ApiConnector {
             .catch(e => {
                 callback(e, null);
             });
-    }
+    }*/
 
     /**
      * Отправляет запрос на получение курсов валют (последние 100 записей)
@@ -211,7 +255,7 @@ class ApiConnector {
      */
     static getStocks(callback) {
         const asyncPart = async () => {
-            const response = await fetch('/api/stocks', {
+            const response = await fetch('/stocks', {
                 method: 'GET',
             });
             return await ApiConnector._parseResponseBody(response);
@@ -225,6 +269,7 @@ class ApiConnector {
                 }
             })
             .catch(e => {
+                console.error("Ошибка: ", e);
                 callback(e, null);
             });
     }

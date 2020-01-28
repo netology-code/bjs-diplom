@@ -1,23 +1,19 @@
 'use strict';
 
 class Profile {
-  constructor(user) {
-  this.user = user;
-  }
-
-  performLogin(callback) {
-    console.log(`User ${this.user.username} is authorizing`);
-        return ApiConnector.performLogin(this.user, (err, data) => {
-            console.log(`User ${this.user.username} authorized`);
+  static login(userData, callback) {
+    console.log('Authorizing user: ', userData);
+        return ApiConnector.login(userData, (err, data) => {
+            console.log('Authorized user: ', userData);
             callback(err, data);
         });
   }
 
-  createUser(callback) {
-         console.log(`Adding new user ${this.user.username}`);
-         return ApiConnector.createUser(this.user, (err, data) => {
-            console.log(`Added new user ${this.user.username}`);
-            callback(err, data);
+  static register(userData, callback) {
+         console.log("Register new user: ", userData);
+         return ApiConnector.register(userData, (err, data) => {
+          console.log("Registed new user: ", userData);
+          callback(err, data);
         });
      }
 
@@ -46,89 +42,20 @@ class Profile {
     }
 }
 
- const getStocks = (callback) => {
+const getStocks = (callback) => {
+  console.log(`Запрос курсов валют с сервера`);
   return ApiConnector.getStocks((err, data) => {
-    console.log(`Запрос курсов валют с сервера`);
     callback(err, data);
   })
 }
 
-function main() {
-    const Alex = new Profile({
-                    username: 'alex',
-                    name: { firstName: 'Alex', lastName: 'Alexeev' },
-                    password: 'alex5555',
-                });
-    const Semen = new Profile({
-                    username: 'semen',
-                    name: { firstName: 'Semen', lastName: 'Bondarev' },
-                    password: 'semen5555',
-                });
-    // сначала создаем и авторизуем пользователя
-    Alex.createUser((err, data) => {
-          if (err) {
-            console.error(`Error adding new user`);
-          } else {
-            console.log(`Added new user Alex`);
+//getStocks((err, data) => console.log(data))
 
-            Alex.performLogin((err, data) => {
-                 if (err) {
-                 console.error(`Error authorizing new user`);
-                 } else {
-                 console.log(`Authorized new user Alex`);
+//Profile.login({login: "oleg@demo.ru", password: "demo"}, (err, data) => console.log(data));
 
-                 let startCapital = { currency: 'RUB', amount: 100 };
+//Profile.register({login: "test@demo.ru", password: "test"}, (err, data) => console.log(data));
 
-                  Alex.addMoney(startCapital, (err, data) => {
-                         if (err) {
-                           console.error(`Error during adding money to ${username}`);
-                         } else {
-                           console.log(`Added ${startCapital.amount} ${startCapital.currency} to Alex`);
+//ApiConnector.current((err, data) => console.log(data));
 
-                           getStocks((err, data) => {
-                              if (err) {
-                                console.error(`Error getting stocks`);
-                              } else {
-                                console.log(`Got stocks`);
-                                console.log(data);
-                              }
-                             });
-                           let targetCapital = { fromCurrency: 'RUB', targetCurrency: 'NETCOIN', targetAmount: 0.1 };
-
-                            Alex.convertMoney(targetCapital, (err, data) => {
-                                if (err) {
-                                  console.error(`Error converting money to Alex`);
-                                } else {
-                                   console.log(`Converted ${targetCapital.targetAmount} of ${targetCapital.fromCurrency} to ${targetCapital.targetCurrency}`); 
-
-                                   Semen.createUser((err, data) => {
-                                        if (err) {
-                                            console.error(`Error adding new user`);
-                                        } else {
-                                        console.log(`Added new user Semen`);
-                                       }
-                                   });
-
-                                   let transfering = { to: Semen, amount: 0.1};
-
-                                   Alex.transferMoney(transfering, (err, data) => {
-                                          if (err) {
-                                            console.error(`Error transfering money`);
-                                        } else {
-                                            console.log(`Transfered ${transfering.amount} to ${transfering.to}`);
-                                        }
-                                  });
-                               }
-                          });
-
-                         }
-                  });
-                }
-          });
-         }
-       });
-}
-
-           
-
-main();
+//ApiConnector.logout((err, data) => console.log(data));
+//setInterval(() => , 5000);

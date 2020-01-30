@@ -2,6 +2,7 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BJS Exchange</title>
     <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.min.css">
@@ -16,10 +17,10 @@
       <div class="ui segment">
         <h2>Курсы валют</h2>
         
-        <table class="ui left aligned striped celled table">
+        <table class="ui aligned striped celled table rates">
         <thead>
           <tr>
-            <th class="left aligned">Код</th>
+            <th>Код</th>
             <th>Курс</th>
           </tr>
         </thead>           
@@ -120,7 +121,7 @@
                 <option value="EUR">EUR</option>
                 <option value="USD">USD</option>
               </select>
-              <div class="ui button violet">Пополнить</div>
+              <div class="ui button violet money-add">Пополнить</div>
             </div>    
           </div>
         </form>
@@ -145,7 +146,7 @@
                 <option value="EUR">EUR</option>
                 <option value="USD">USD</option>
               </select>              
-              <div class="ui button violet">Конвертировать</div>
+              <div class="ui button violet money-convert">Конвертировать</div>
             </div>    
           </div>
         </form>        
@@ -177,7 +178,7 @@
                 <option value="EUR">EUR</option>
                 <option value="USD">USD</option>
               </select>             
-              <div class="ui button violet">Перевести</div>
+              <div class="ui button violet money-transfer">Перевести</div>
             </div>    
           </div>
         </form>         
@@ -224,10 +225,10 @@
               <input type="text" placeholder="ID"> 
             </div>         
             <div class="ui input">
-              <input type="text" placeholder="Имя "> 
+              <input type="text" placeholder="Имя"> 
             </div>
           </div>
-          <div class="ui bottom attached button fluid violet">Добавить</div>
+          <div class="ui bottom attached button fluid violet user-add">Добавить</div>
         </form>        
       </div>
       

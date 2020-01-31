@@ -54,13 +54,20 @@ ul, ol {
   padding: 4em 0;
 }
 
-.ui.header.neon {
+.ui.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ui.heading.neon {
   font-family: 'Play', 'Helvetica Neue', Arial, sans-serif;
   font-size: 4rem;
-  margin-left: 13px;  
   color: #FFD5FF;
   text-shadow: 1px 0px 4px #FFD5FF, 2px 0px 4px #FFD5FF, 2px 0px 3px #D42CCA, 2px 3px 15px #D42CCA, 2px 0px 15px, 5px 0px 125px, 20px 0vw 200px #D42CCA, 40px 0vw 200px #D42CCA;
   text-transform: uppercase;
+  padding-right: 0.5rem;
+  margin-bottom: 0;
 }
 
 .flicker {
@@ -347,8 +354,8 @@ body > .grid {
 
 @media (max-width: 530px) {
   
-  .ui.header.neon {
-    font-size: 3.5rem;
+  .ui.heading.neon {
+    font-size: calc(10vw - 4px);
   }
   
   .ui.stacked.segment .ui.list {
@@ -375,7 +382,7 @@ body > .grid {
   }  
   
   .ui.form .ui.button {
-    background-size: 50%;
+    background-size: 40%;
     background-position: center;
     background-repeat: no-repeat;
   }

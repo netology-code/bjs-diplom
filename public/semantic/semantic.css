@@ -26657,6 +26657,7 @@ Floated Menu / Item
 
 /* Responsive */
 
+/*
 @media only screen and (max-width: 767px) {
   .ui.table:not(.unstackable) {
     width: 100%;
@@ -26703,13 +26704,14 @@ Floated Menu / Item
     font-weight: bold;
   }
 
-  /* Definition Table */
+   Definition Table 
 
   .ui.definition.table:not(.unstackable) thead th:first-child {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
   }
 }
+*/
 
 /*******************************
             Coupling

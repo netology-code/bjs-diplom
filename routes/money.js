@@ -10,7 +10,13 @@ const adapter = new FileSync('db.json');
 const db = low(adapter);
 
 router.post("/add", function(request, response) {
-    const { currency, amount } = request.body;
+    let { currency, amount } = request.body;
+
+    amount = Number.parseFloat(amount);
+    if(Number.isNaN(amount)){
+        response.json({ success: false, error: `Ошибка при переводе значения в число`});
+        return;
+    }
 
     let userDb = db.get("users").find({login: request.session.login});
     let user = userDb.value();
@@ -28,11 +34,17 @@ router.post("/add", function(request, response) {
 });
 
 router.post("/transfer", function(request, response) {
-    const { to, currency, amount } = request.body;
+    let { to, currency, amount } = request.body;
     let sourceUserDb = db.get("users").find({login: request.session.login});
     let targetUserDb = db.get("users").find({id: to});
     let sourceUser = sourceUserDb.value();
     let targetUser = targetUserDb.value();
+
+    amount = Number.parseFloat(amount);
+    if(Number.isNaN(amount)){
+        response.json({ success: false, error: `Ошибка при переводе значения в число`});
+        return;
+    }
 
     if(!sourceUser){
         response.json({ success: false, error: `Пользователь не найден`});
@@ -59,7 +71,14 @@ router.post("/transfer", function(request, response) {
 });
 
 router.post("/convert", function(request, response) {
-    const { fromCurrency, targetCurrency, fromAmount } = request.body;
+    let { fromCurrency, targetCurrency, fromAmount } = request.body;
+
+    amount = Number.parseFloat(amount);
+    if(Number.isNaN(amount)){
+        response.json({ success: false, error: `Ошибка при переводе значения в число`});
+        return;
+    }
+    
     let userDb = db.get("users").find({login: request.session.login});
     let user = userDb.value();
 

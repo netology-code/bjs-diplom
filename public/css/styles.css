@@ -124,8 +124,6 @@ ul, ol {
 }
 
 .ui.table.addresses tr td:first-child {
-  display: block;
-  width: 4.5rem;
   overflow: hidden;
 }
 

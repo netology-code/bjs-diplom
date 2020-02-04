@@ -13,8 +13,19 @@ router.post("/add", function(request, response) {
     let { currency, amount } = request.body;
 
     amount = Number.parseFloat(amount);
+    console.log(amount);
     if(Number.isNaN(amount)){
-        response.json({ success: false, error: `Ошибка при переводе значения в число`});
+        response.json({ success: false, data: 'Ошибка при переводе значения в число'});
+        return;
+    }
+
+    if(amount < 0){
+        response.json({ success: false, data: 'Невозможно добавить отрицательное число'});
+        return;
+    }
+
+    if(!["RUB", "EUR", "USD", "NTC"].includes(currency)){
+        response.json({ success: false, data: 'Такая валюта не существует'});
         return;
     }
 
@@ -22,7 +33,7 @@ router.post("/add", function(request, response) {
     let user = userDb.value();
 
     if(!user){
-        response.json({ success: false, error: `Пользователь не найден`});
+        response.json({ success: false, data: 'Пользователь не найден'});
         return;
     }
 
@@ -42,22 +53,27 @@ router.post("/transfer", function(request, response) {
 
     amount = Number.parseFloat(amount);
     if(Number.isNaN(amount)){
-        response.json({ success: false, error: `Ошибка при переводе значения в число`});
+        response.json({ success: false, data: 'Ошибка при переводе значения в число'});
+        return;
+    }
+
+    if(amount < 0){
+        response.json({ success: false, data: 'Невозможно перевести отрицательное число'});
         return;
     }
 
     if(!sourceUser){
-        response.json({ success: false, error: `Пользователь не найден`});
+        response.json({ success: false, data: 'Пользователь не найден'});
         return;
     }
 
     if(!targetUser){
-        response.json({ success: false, error: `Получатель не найден`});
+        response.json({ success: false, data: 'Получатель не найден'});
         return;
     }
 
     if(sourceUser.balance[currency] < amount){
-        response.json({ success: false, error: `Не хватает денег для перевода`});
+        response.json({ success: false, data: 'Не хватает денег для перевода'});
         return;
     }
 
@@ -73,9 +89,14 @@ router.post("/transfer", function(request, response) {
 router.post("/convert", function(request, response) {
     let { fromCurrency, targetCurrency, fromAmount } = request.body;
 
-    amount = Number.parseFloat(amount);
-    if(Number.isNaN(amount)){
-        response.json({ success: false, error: `Ошибка при переводе значения в число`});
+    fromAmount = Number.parseFloat(fromAmount);
+    if(Number.isNaN(fromAmount)){
+        response.json({ success: false, data: 'Ошибка при переводе значения в число'});
+        return;
+    }
+
+    if(fromAmount < 0){
+        response.json({ success: false, data: 'Невозможно конвертировать отрицательное число'});
         return;
     }
     
@@ -83,20 +104,20 @@ router.post("/convert", function(request, response) {
     let user = userDb.value();
 
     if(!user){
-        response.json({ success: false, error: `Пользователь не найден`});
+        response.json({ success: false, data: 'Пользователь не найден'});
         return;
     }
 
     if(user.balance[fromCurrency] < fromAmount){
         response.json({
             success: false, 
-            error: `Не хватает денег для конвертации из ${fromCurrency} в ${targetCurrency}`
+            data: `Не хватает денег для конвертации из ${fromCurrency} в ${targetCurrency}`
         });
         return;
     }
 
     if(fromCurrency === targetCurrency){
-        response.json({success: false, error: `Нельзя перевести в такую же валюту`});
+        response.json({success: false, data: 'Нельзя перевести в такую же валюту'});
         return;
     }
 

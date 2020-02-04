@@ -21,7 +21,7 @@ router.post("/register",upload.none(), function(request, response) {
         error += ' Поле "Пароль" обязательно для заполнения.';
     
     if(error !== "")
-        response.json({ success: false, error});
+        response.json({ success: false, data: error});
 
     let user = db.get("users").find({login}).value();
     if(!user){
@@ -39,12 +39,24 @@ router.post("/register",upload.none(), function(request, response) {
         response.json({ success: true, userId: user.id});
     }
     else{
-        response.json({ success: false, error: `Логин ${login} уже существует.`});
+        response.json({ success: false, data: `Логин ${login} уже существует.`});
     }
 })
 
 router.post("/login",upload.none(), function(request, response) {
     const { login, password } = request.body;
+    error = "";
+    if(login === "")
+        error += 'Поле "Логин" обязательно для заполнения.';
+
+    if(password === "")
+        error += ' Поле "Пароль" обязательно для заполнения.';
+    
+    if(error !== ""){
+        response.json({ success: false, data: error});
+        return;
+    }
+
     let user = db.get("users").find({login, password}).value();
     if(!!user){
         request.session.authorized = true;
@@ -52,7 +64,7 @@ router.post("/login",upload.none(), function(request, response) {
         response.json({ success: true, userId: user.id});
     }
     else
-        response.json({ success: false, error:`Пользователь c login ${login} и указанным паролем не найден`});
+        response.json({ success: false, data:`Пользователь c логином ${login} и указанным паролем не найден`});
 })
 
 router.post("/logout", function(request, response) {
@@ -61,17 +73,17 @@ router.post("/logout", function(request, response) {
         delete request.session.login;
         response.json({ success: true});
     }else{
-        response.json({ success: false, error: `Пользователь не авторизован`});
+        response.json({ success: false, data: `Пользователь не авторизован`});
     }
 })
 
 router.get("/current", function(request, response) {
     let user = db.get("users").find({login: request.session.login}).value();
     if(!!user){
-        response.json({ success: true, user});
+        response.json({ success: true, data: user});
     }
     else
-        response.json({ success: false, error: `Пользователь не авторизован`});
+        response.json({ success: false, data: `Пользователь не авторизован`});
 })
 
 

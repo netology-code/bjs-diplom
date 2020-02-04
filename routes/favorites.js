@@ -12,7 +12,7 @@ router.get("/", function(request, response) {
     let user = db.get("users").find({login: request.session.login}).value();
 
     if(!user){
-        response.json({ success: false, error: `Пользователь не найден`});
+        response.json({ success: false, data: `Пользователь не найден`});
         return;
     }
     
@@ -25,24 +25,18 @@ router.post("/add", function(request, response) {
     let user = db.get("users").find({login: request.session.login}).value();
 
     if(!user){
-        response.json({ success: false, error: `Пользователь не найден`});
+        response.json({ success: false, data: `Пользователь не найден`});
         return;
     }
     
     let favorites = db.get("favorites").value()[user.id] || {};
     if(!!favorites[id]){
-        response.json({ success: false, error: `Такой пользователь уже есть в списке`});
+        response.json({ success: false, data: `Такой пользователь уже есть в списке`});
         return;
     }
 
     if(id === user.id){
-        response.json({ success: false, error: `Нельзя добавить себя в избранное`});
-        return;
-    }
-
-    let insertedUser = db.get("users").find({id}).value();
-    if(!insertedUser){
-        response.json({ success: false, error: `Добавляемый пользователь не найден`});
+        response.json({ success: false, data: `Нельзя добавить себя в избранное`});
         return;
     }
 
@@ -56,13 +50,13 @@ router.post("/remove", function(request, response) {
     let user = db.get("users").find({login: request.session.login}).value();
 
     if(!user){
-        response.json({ success: false, error: `Пользователь не найден`});
+        response.json({ success: false, data: `Пользователь не найден`});
         return;
     }
     
     let favorites = db.get("favorites").value()[user.id];
     if(!favorites[id]){
-        response.json({ success: false, error: `Удаляемый пользователь не найден`});
+        response.json({ success: false, data: `Удаляемый пользователь не найден`});
         return;
     }
 

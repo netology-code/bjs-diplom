@@ -294,12 +294,14 @@ body > .grid {
   
   .ui.table.rates td {
     border: 1px solid rgba(34,36,38,.1);
-    width: 50px;
+    width: 53px;
     height: 50%;
   }  
 
   .ui.table.rates tbody td:first-child {
     line-height: 80%;
+    word-break: break-word;
+    font-size: 0.95em;    
   }  
 
   .ui.table.rates tbody td:last-child {

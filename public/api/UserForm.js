@@ -2,7 +2,7 @@
 
 class UserForm {
     constructor(){
-        this.loginForm = document.getElementById('login'),
+        this.loginForm = document.getElementById('login');
         this.registerForm = document.getElementById('register');
         this.loginForm.querySelector('.button').addEventListener('click', this.loginFormAction.bind(this));
         this.registerForm.querySelector('.button').addEventListener('click', this.registerFormAction.bind(this));

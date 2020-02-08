@@ -28,6 +28,11 @@ router.post("/add", function(request, response) {
         response.json({ success: false, data: `Пользователь не найден`});
         return;
     }
+
+    if(id === "" || name === ""){
+        response.json({ success: false, data: `Поля для ввода должны быть заполенны`});
+        return;
+    }
     
     let favorites = db.get("favorites").value()[user.id] || {};
     if(!!favorites[id]){

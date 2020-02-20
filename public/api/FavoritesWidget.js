@@ -31,7 +31,7 @@ class FavoritesWidget{
                 const element = data[key];
                 this.favoritesTableBody.innerHTML += `
                 <tr>
-                    <td data-addressee-id='${key}'>${key}</td>
+                    <td data-addressee-id='${key}'>${key.length > 15 ? key.slice(0,15)+"..." : key}</td>
                     <td data-addressee-name='${element}'>${element}</td>
                     <td>
                         <button class='ui purple icon button mini'>

@@ -28,6 +28,8 @@
 * login: *oleg@demo.ru*, password: *demo*
 * login: *ivan@demo.ru*, password: *demo*
 * login: *petr@demo.ru*, password: *demo*
+* login: *galina@demo.ru*, password: *demo*
+* login: *vladimir@demo.ru*, password: *demo*
 
 ## Реализация задания
 1. Подключите строгий режим выполнения кода.

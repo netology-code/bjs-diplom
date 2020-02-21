@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const multer  = require('multer');
 const upload = multer();
-const uniqid = require('uniqid');
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync', {
@@ -20,16 +19,26 @@ router.post("/register",upload.none(), function(request, response) {
     if(password === "")
         error += ' Поле "Пароль" обязательно для заполнения.';
     
-    if(error !== "")
+    if(error !== ""){
         response.json({ success: false, data: error});
+        return;
+    }
 
-    let user = db.get("users").find({login}).value();
+    const userDb = db.get("users");
+    let user = userDb.find({login}).value();
     if(!user){
+        allUsers = userDb.value();
+        let maxId = 0;
+        allUsers.forEach(element => {
+            if(+element.id > maxId)
+                maxId = element.id;
+        });
+        maxId++;
         user = { 
             created_at: new Date().toISOString(), 
             login, 
             password, 
-            id: uniqid(), 
+            id: maxId, 
             balance: {RUB: 0, USD: 0, EUR: 0, NTC: 0}
         };
         db.get("users").push(user).write();

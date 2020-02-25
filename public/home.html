@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJS Exchange</title>
+    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.min.css">
+  </head>
+<body>
+
+<div class="ui container">
+  <header class="ui header">
+    <h1 class="ui heading neon">Биржа <span class="flicker">Неткоин</span>ов</h1>
+    <div class="ui button invert logout">Выйти</div>
+  </header>
+  <div class="ui grid">
+    <div class="column four wide">
+      <div class="ui segment">
+        <h2>Курсы валют</h2>
+        <table class="ui left aligned striped celled table rates">
+        <thead>
+          <tr>
+            <th>Код</th>
+            <th>Курс</th>
+          </tr>
+        </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="column seven wide">
+      <div class="ui stacked segment">
+        <h2>Ваш профиль</h2>
+        <dl class="ui list">
+          <div class="column">
+            <div class="item">
+              <dt class="header">ID</dt>
+              <dd class="description" data-user-id=""></dd>
+            </div>
+            <div class="item">
+              <dt class="header">Имя</dt>
+              <dd class="description" data-user-name=""></dd>
+            </div>
+          </div>
+          <div class="column">
+            <div class="item">
+              <dt class="header">Кошелёк</dt>
+              <dd class="description">
+                <ul>
+                  <li data-user-wallet-rub=""></li>
+                  <li data-user-wallet-eur=""></li>
+                  <li data-user-wallet-usd=""></li>
+                  <li data-user-wallet-ntc=""></li>
+                </ul>
+              </dd>
+            </div>
+          </div>
+        </dl>
+
+      </div>
+      <div class="ui stacked segment">
+        <h2>Пополнение счёта</h2>
+        <form id="addMoney" class="ui large form">
+          <div class="field">
+            <div class="ui action input fluid">
+              <input name="amount" type="number" min="0" placeholder="Сумма">
+              <select name="currency" class="ui selection compact dropdown">
+                <option value="">Валюта</option>
+                <option value="RUB">RUB</option>
+                <option value="NTC">NTC</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>
+              <div class="ui button violet">Пополнить</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="ui stacked segment">
+        <h2>Конвертация валют</h2>
+        <form id="conversionMoney" class="ui large form">
+          <div class="field">
+            <div class="ui action input fluid">
+              <input type="number" min="0" placeholder="Сумма">
+              <select class="ui selection compact dropdown">
+                <option value="">Из</option>
+                <option value="RUB">RUB</option>
+                <option value="NTC">NTC</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>
+              <select class="ui selection compact dropdown">
+                <option value="">В</option>
+                <option value="RUB">RUB</option>
+                <option value="NTC">NTC</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>
+              <div class="ui button violet">Конвертировать</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="ui stacked segment">
+        <h2>Перевод средств</h2>
+        <form id="sendMoney" class="ui large form">
+          <div class="field">
+            <div class="ui action input fluid labeled">
+              <div class="ui label">
+                Кому:
+              </div>
+              <select class="ui selection dropdown fluid">
+                <option value="">Выберите пользователя</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="ui action input fluid">
+              <input type="number" min="0" placeholder="Сумма">
+              <select class="ui selection compact dropdown">
+                <option value="">Валюта</option>
+                <option value="RUB">RUB</option>
+                <option value="NTC">NTC</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>
+              <div class="ui button violet">Перевести</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="ui message fluid negative" id="moneyMessageBox">Невозможно конвертировать из RUB в RUB.</div>
+    </div>
+    <div class="column five wide">
+      <div class="ui segment">
+        <h2>Адресная книга</h2>
+        <table class="ui left aligned striped celled table addresses">
+        <thead>
+          <tr>
+            <th class="left aligned">ID</th>
+            <th>Имя</th>
+            <th></th>
+          </tr>
+        </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <form id="addUser" class="ui large form new-contact">
+          <div class="ui action fluid">
+            <div class="ui input">
+              <input type="text" placeholder="ID">
+            </div>
+            <div class="ui input">
+              <input type="text" placeholder="Имя">
+            </div>
+          </div>
+          <div class="ui bottom attached button fluid violet">Добавить</div>
+        </form>
+      </div>
+
+      <div class="ui message fluid" id="favoritesMessageBox">Пользователь добавлен в адресную книгу.</div>
+    </div>
+  </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>
+<script src="./api/ApiConnector.js"></script>
+<script src="./api/RatesBoard.js"></script>
+<script src="./api/FavoritesWidget.js"></script>
+<script src="./api/ProfileWidget.js"></script> 
+<script src="./api/LogoutButton.js"></script> 
+<script src="./api/MoneyManager.js"></script> 
+<script src="homePage.js"></script> 
+<script>
+  $('.ui.dropdown')
+    .dropdown()
+  ;
+</script>  
+  
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJS Exchange Entrance</title>
+    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.min.css">
+  </head>
+<body>
+
+<div class="ui container middle aligned center aligned grid entrance">
+  <div class="four wide column">
+
+    <ul class="switcher">
+      <li class="option">
+        <input class="tab-input" name="tab" type="radio" id="sign-in" checked>
+        <label class="tab-label" for="sign-in">Войти</label>
+        <div class="tab-content">
+          <form id="login" class="ui large form">
+            <div class="ui stacked segment">
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" name="email" placeholder="Логин">
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="password" autocomplete="on" placeholder="Пароль">
+                </div>
+              </div>
+              <div class="ui fluid large violet submit button">Войти</div>
+            </div>
+            <div class="ui message negative" style="display: block;">Неверный логин или пароль.</div>
+          </form>
+        </div>
+      </li>
+      <li class="option">
+        <input class="tab-input" name="tab" type="radio" id="sign-up">
+        <label class="tab-label" for="sign-up">Зарегистрироваться</label>
+        <div class="tab-content">
+          <form id="register" class="ui large form">
+            <div class="ui stacked segment">
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" name="email" placeholder="Логин">
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="password" autocomplete="on" placeholder="Пароль">
+                </div>
+              </div>
+              <div class="ui fluid large violet submit button">Зарегистрироваться</div>
+            </div>
+            <div class="ui message negative">Сообщений нет.</div>
+          </form>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>  
+<script src="./api/UserForm.js"></script> 
+<script src="./api/ApiConnector.js"></script> 
+<script src="loginPage.js"></script>
+</body>
+</html>

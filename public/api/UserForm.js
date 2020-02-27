@@ -1,46 +1,46 @@
-'use strict';
-
+// eslint-disable-next-line no-unused-vars
 class UserForm {
-    constructor(){
-        this.loginForm = document.getElementById('login');
-        this.registerForm = document.getElementById('register');
-        this.loginForm.querySelector('.button').addEventListener('click', this.loginFormAction.bind(this));
-        this.registerForm.querySelector('.button').addEventListener('click', this.registerFormAction.bind(this));
+  constructor() {
+    this.loginForm = document.getElementById('login');
+    this.registerForm = document.getElementById('register');
+    this.loginForm.querySelector('.button').addEventListener('click', this.loginFormAction.bind(this));
+    this.registerForm.querySelector('.button').addEventListener('click', this.registerFormAction.bind(this));
 
-        this.loginErrorMessageBox = this.loginForm.querySelector('.ui.message');
-        this.loginErrorMessageBox.style.display = 'none';
-        this.registerErrorMessageBox = this.registerForm.querySelector('.ui.message');
-        this.registerErrorMessageBox.style.display = 'none';
+    this.loginErrorMessageBox = this.loginForm.querySelector('.ui.message');
+    this.loginErrorMessageBox.style.display = 'none';
+    this.registerErrorMessageBox = this.registerForm.querySelector('.ui.message');
+    this.registerErrorMessageBox.style.display = 'none';
 
-        this.loginFormCallback = f => f;
-        this.registerFormCallback = f => f;
-    }
+    this.loginFormCallback = (f) => f;
+    this.registerFormCallback = (f) => f;
+  }
 
-    setLoginErrorMessage(message){
-        this.loginErrorMessageBox.innerText = message;
-        this.loginErrorMessageBox.style.display = 'block';
-        setTimeout(() => this.loginErrorMessageBox.style.display = 'none', 5000)
-    }
+  setLoginErrorMessage(message) {
+    this.loginErrorMessageBox.innerText = message;
+    this.loginErrorMessageBox.style.display = 'block';
+    setTimeout(() => { this.loginErrorMessageBox.style.display = 'none'; }, 5000);
+  }
 
-    setRegisterErrorMessage(message){
-        this.registerErrorMessageBox.innerText = message;
-        this.registerErrorMessageBox.style.display = 'block';
-        setTimeout(() => this.registerErrorMessageBox.style.display = 'none', 5000)
-    }
+  setRegisterErrorMessage(message) {
+    this.registerErrorMessageBox.innerText = message;
+    this.registerErrorMessageBox.style.display = 'block';
+    setTimeout(() => { this.registerErrorMessageBox.style.display = 'none'; }, 5000);
+  }
 
-    loginFormAction(){
-        this.loginFormCallback(this._getData(this.loginForm));
-        this.loginForm.reset();
-    }
+  loginFormAction() {
+    this.loginFormCallback(this.getData(this.loginForm));
+    this.loginForm.reset();
+  }
 
-    registerFormAction(){
-        this.registerFormCallback(this._getData(this.registerForm));
-        this.registerForm.reset();
-    }
+  registerFormAction() {
+    this.registerFormCallback(this.getData(this.registerForm));
+    this.registerForm.reset();
+  }
 
-    _getData(form){
-        const login = form.querySelector('[name="email"]').value,
-        password = form.querySelector('[name="password"]').value;
-        return {login, password};
-    }
+  // eslint-disable-next-line class-methods-use-this
+  getData(form) {
+    const login = form.querySelector('[name="email"]').value;
+    const password = form.querySelector('[name="password"]').value;
+    return { login, password };
+  }
 }

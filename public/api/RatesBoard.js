@@ -1,24 +1,22 @@
-'use strict';
 
+// eslint-disable-next-line no-unused-vars
 class RatesBoard {
-    constructor(){
-        this.tableBody = document.querySelector('table.table.rates tbody');
-    }
+  constructor() {
+    this.tableBody = document.querySelector('table.table.rates tbody');
+  }
 
-    fillTable(data){
-        for (const key in data) {
-            if (data.hasOwnProperty(key)) {
-                const element = data[key];
-                this.tableBody.innerHTML += `
-                <tr>
-                    <td>${key}</td>
-                    <td data-eur-ntc="${element}">${element}</td>
-                </tr>`;
-            }
-        }
-    }
+  fillTable(data) {
+    Object.keys(data).forEach((key) => {
+      const element = data[key];
+      this.tableBody.innerHTML += `
+      <tr>
+        <td>${key}</td>
+        <td data-eur-ntc='${element}'>${element}</td>
+      </tr>`;
+    });
+  }
 
-    clearTable(){
-        this.tableBody.innerHTML = "";
-    }
+  clearTable() {
+    this.tableBody.innerHTML = '';
+  }
 }

@@ -10,8 +10,8 @@
 6. `registerFormCallback` — функция, которая будет выполняться при попытке регистрации
 ### Методы
 1. `constructor()` — создаёт объект
-2. `setRegisterErrorMessage(message)` — выводит сообщение с ошибкой при авторизации
-3. `setLoginErrorMessage(message)` — выводит сообщение с ошибкой при регистрации
+2. `setLoginErrorMessage(message)` — выводит сообщение с ошибкой при авторизации
+3. `setRegisterErrorMessage(message)` — выводит сообщение с ошибкой при регистрации
 4. `loginFormAction()` — обработчик события сабмита формы авторизации
 5. `registerFormAction()` — обработчик события сабмита формы регистрации
 6. `getData(form)` — метод получения данных из переданной формы

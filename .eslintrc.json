@@ -1,4 +1,13 @@
 {
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js"
+          ]
+        }
+      }
+    },
     "env": {
         "browser": true,
         "commonjs": true,
@@ -18,3 +27,4 @@
     "rules": {
     }
 }
+

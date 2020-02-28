@@ -44,7 +44,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }
@@ -75,7 +74,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }
@@ -102,7 +100,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }
@@ -129,7 +126,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }
@@ -156,7 +152,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }
@@ -185,7 +180,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }
@@ -214,7 +208,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }
@@ -246,7 +239,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }
@@ -277,7 +269,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }
@@ -333,7 +324,6 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error('Ошибка: ', e);
         callback(e, null);
       });
   }

@@ -1,15 +1,15 @@
-const router = require('express').Router();
-const getStocks = require('./stocks');
-const user = require('./user');
-const favorites = require('./favorites');
-const money = require('./money');
+import router, { use, get } from 'express';
+import getStocks from './stocks';
+import user from './user';
+import favorites from './favorites';
+import money from './money';
 
-router.use('/user', user);
-router.use('/favorites', favorites);
-router.use('/money', money);
+use('/user', user);
+use('/favorites', favorites);
+use('/money', money);
 
-router.get("/stocks", function(request, response) {
-    getStocks((data) => response.json(data));
+get('/stocks', (request, response) => {
+  getStocks((data) => response.json(data));
 });
 
-module.exports = router;
+export default router;

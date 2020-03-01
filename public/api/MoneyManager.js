@@ -42,7 +42,7 @@ class MoneyManager {
 
   sendMoneyAction() {
     const amount = this.sendMoneyForm.querySelector('[placeholder="Сумма"]').value;
-    const to = this.sendMoneyForm.getElementsByTagName('select')[0].value;
+    const to = +this.sendMoneyForm.getElementsByTagName('select')[0].value;
     const currency = this.sendMoneyForm.getElementsByTagName('select')[1].value;
     this.sendMoneyCallback({ to, amount, currency });
 
@@ -72,7 +72,7 @@ class MoneyManager {
     select.innerHTML = '<option value="">Выберите пользователя</option>';
     Object.keys(data).forEach((key) => {
       const element = data[key];
-      select.innerHTML += `<option value="${key}">${element}</option>`;
+      select.innerHTML += `<option value="${+key}">${element}</option>`;
     });
   }
 }

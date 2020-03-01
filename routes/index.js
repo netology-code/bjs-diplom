@@ -1,15 +1,16 @@
-import router, { use, get } from 'express';
+import express from 'express';
 import getStocks from './stocks';
 import user from './user';
 import favorites from './favorites';
 import money from './money';
 
-use('/user', user);
-use('/favorites', favorites);
-use('/money', money);
+const router = express.Router();
+router.use('/user', user);
+router.use('/favorites', favorites);
+router.use('/money', money);
 
-get('/stocks', (request, response) => {
+router.get('/stocks', (request, response) => {
   getStocks((data) => response.json(data));
 });
 
-export default router;
+module.exports = router;

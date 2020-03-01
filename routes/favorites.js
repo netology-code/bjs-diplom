@@ -1,5 +1,6 @@
-import router from 'express';
+import express from 'express';
 
+const router = express.Router();
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 

@@ -1,7 +1,9 @@
-import router from 'express';
+import express from 'express';
+
 import low from 'lowdb';
 import getStocks from './stocks';
 
+const router = express.Router();
 const FileSync = require('lowdb/adapters/FileSync');
 
 const adapter = new FileSync('db.json');
@@ -137,4 +139,4 @@ router.post('/convert', (request, response) => {
   });
 });
 
-export default router;
+module.exports = router;

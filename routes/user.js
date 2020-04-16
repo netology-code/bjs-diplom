@@ -50,7 +50,7 @@ router.post('/register', upload.none(), (request, response) => {
 
     request.session.authorized = true;
     request.session.login = login;
-    response.json({ success: true, userId: user.id });
+    response.json({ success: true, userId: registerUser.id });
   } else {
     response.json({ success: false, data: `Логин ${login} уже существует.` });
   }

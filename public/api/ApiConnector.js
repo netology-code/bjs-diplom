@@ -44,7 +44,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -74,7 +74,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -100,7 +100,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -126,7 +126,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -152,7 +152,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -180,7 +180,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -208,7 +208,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -239,7 +239,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -269,7 +269,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -299,7 +299,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 
@@ -324,7 +324,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        callback(e, null);
+        console.error("Произошла ошибка: ", e);
       });
   }
 }

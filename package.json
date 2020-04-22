@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "lint": "eslint ./ --ignore-path .eslintignore",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

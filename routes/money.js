@@ -102,6 +102,16 @@ router.post('/convert', (request, response) => {
     return;
   }
 
+  if(!fromCurrency){
+    response.json({ success: false, data: 'Исходная валюта не была выбрана' });
+    return;
+  }
+  
+  if(!targetCurrency){
+    response.json({ success: false, data: 'Целевая валюта не была выбрана' });
+    return;
+  }
+
   const userDb = db.get('users').find({ login: request.session.login });
   const user = userDb.value();
 

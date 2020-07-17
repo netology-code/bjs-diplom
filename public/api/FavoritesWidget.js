@@ -51,9 +51,9 @@ class FavoritesWidget {
 
   setMessage(isError, message) {
     if (isError) {
-      this.favoritesMessageBox.className = 'ui message fluid error';
-    } else {
       this.favoritesMessageBox.className = 'ui message fluid success';
+    } else {
+      this.favoritesMessageBox.className = 'ui message fluid error';
     }
 
     this.favoritesMessageBox.innerText = message;

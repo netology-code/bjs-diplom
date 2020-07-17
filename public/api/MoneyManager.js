@@ -56,9 +56,9 @@ class MoneyManager {
 
   setMessage(isError, message) {
     if (isError) {
-      this.errorMessageBlock.className = 'ui message fluid error';
-    } else {
       this.errorMessageBlock.className = 'ui message fluid success';
+    } else {
+      this.errorMessageBlock.className = 'ui message fluid error';
     }
 
     this.errorMessageBlock.innerText = message;

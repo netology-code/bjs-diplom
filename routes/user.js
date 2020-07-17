@@ -88,7 +88,7 @@ router.post('/logout', (request, response) => {
     delete request.session.login;
     response.json({ success: true });
   } else {
-    response.json({ success: false, data: 'Пользователь не авторизован' });
+    response.json({ success: false, error: 'Пользователь не авторизован' });
   }
 });
 
@@ -97,7 +97,7 @@ router.get('/current', (request, response) => {
   if (user) {
     response.json({ success: true, data: user });
   } else {
-    response.json({ success: false, data: 'Пользователь не авторизован' });
+    response.json({ success: false, error: 'Пользователь не авторизован' });
   }
 });
 

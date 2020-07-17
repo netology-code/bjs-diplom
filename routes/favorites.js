@@ -11,7 +11,7 @@ router.get('/', (request, response) => {
   const user = db.get('users').find({ login: request.session.login }).value();
 
   if (!user) {
-    response.json({ success: false, data: 'Пользователь не найден' });
+    response.json({ success: false, error: 'Пользователь не найден' });
     return;
   }
 
@@ -24,23 +24,28 @@ router.post('/add', (request, response) => {
   const user = db.get('users').find({ login: request.session.login }).value();
 
   if (!user) {
-    response.json({ success: false, data: 'Пользователь не найден' });
+    response.json({ success: false, error: 'Пользователь не найден' });
+    return;
+  }
+
+  if(typeof id !== 'number'){
+    response.json({ success: false, error: 'Значение id должно быть числом' });
     return;
   }
 
   if (id === '' || name === '') {
-    response.json({ success: false, data: 'Поля для ввода должны быть заполенны' });
+    response.json({ success: false, error: 'Поля для ввода должны быть заполенны' });
     return;
   }
 
   const favorites = db.get('favorites').value()[user.id] || {};
   if (favorites[id]) {
-    response.json({ success: false, data: 'Такой пользователь уже есть в списке' });
+    response.json({ success: false, error: 'Такой пользователь уже есть в списке' });
     return;
   }
 
   if (id === user.id) {
-    response.json({ success: false, data: 'Нельзя добавить себя в избранное' });
+    response.json({ success: false, error: 'Нельзя добавить себя в избранное' });
     return;
   }
 
@@ -54,13 +59,13 @@ router.post('/remove', (request, response) => {
   const user = db.get('users').find({ login: request.session.login }).value();
 
   if (!user) {
-    response.json({ success: false, data: 'Пользователь не найден' });
+    response.json({ success: false, error: 'Пользователь не найден' });
     return;
   }
 
   const favorites = db.get('favorites').value()[user.id];
   if (!favorites[id]) {
-    response.json({ success: false, data: 'Удаляемый пользователь не найден' });
+    response.json({ success: false, error: 'Удаляемый пользователь не найден' });
     return;
   }
 

@@ -28,7 +28,7 @@ router.post('/add', (request, response) => {
     return;
   }
 
-  if(typeof id !== 'number'){
+  if(Number.isNaN(Number(id))){
     response.json({ success: false, error: 'Значение id должно быть числом' });
     return;
   }

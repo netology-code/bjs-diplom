@@ -31,7 +31,7 @@ function getStocks(callback) {
           NTC_EUR: +(ntc / eur).toFixed(5),
         },
       });
-    } else callback({ success: false, data: error });
+    } else callback({ success: false, error: error });
   });
 }
 

@@ -54,8 +54,8 @@ class MoneyManager {
     selects[1].classList.add('default');
   }
 
-  setMessage(isError, message) {
-    if (isError) {
+  setMessage(isSuccess, message) {
+    if (isSuccess) {
       this.errorMessageBlock.className = 'ui message fluid success';
     } else {
       this.errorMessageBlock.className = 'ui message fluid error';

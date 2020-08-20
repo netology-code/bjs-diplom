@@ -19,7 +19,7 @@ router.post('/register', upload.none(), (request, response) => {
   }
 
   if (error !== '') {
-    response.json({ success: false, data: error });
+    response.json({ success: false, error: error });
     return;
   }
 
@@ -52,7 +52,7 @@ router.post('/register', upload.none(), (request, response) => {
     request.session.login = login;
     response.json({ success: true, userId: registerUser.id });
   } else {
-    response.json({ success: false, data: `Логин ${login} уже существует.` });
+    response.json({ success: false, error: `Логин ${login} уже существует.` });
   }
 });
 
@@ -68,7 +68,7 @@ router.post('/login', upload.none(), (request, response) => {
   }
 
   if (error !== '') {
-    response.json({ success: false, data: error });
+    response.json({ success: false, error: error });
     return;
   }
 
@@ -78,7 +78,7 @@ router.post('/login', upload.none(), (request, response) => {
     request.session.login = login;
     response.json({ success: true, userId: user.id });
   } else {
-    response.json({ success: false, data: `Пользователь c логином ${login} и указанным паролем не найден` });
+    response.json({ success: false, error: `Пользователь c логином ${login} и указанным паролем не найден` });
   }
 });
 

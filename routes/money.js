@@ -123,7 +123,7 @@ router.post('/convert', (request, response) => {
   if (user.balance[fromCurrency] < fromAmount) {
     response.json({
       success: false,
-      data: `Не хватает денег для конвертации из ${fromCurrency} в ${targetCurrency}`,
+      error: `Не хватает денег для конвертации из ${fromCurrency} в ${targetCurrency}`,
     });
     return;
   }

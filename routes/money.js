@@ -63,6 +63,11 @@ router.post('/transfer', (request, response) => {
     return;
   }
 
+  if (!currency) {
+    response.json({ success: false, error: 'Валюта для перевода не выбрана' });
+    return;
+  }
+
   if (!sourceUser) {
     response.json({ success: false, error: 'Пользователь не найден' });
     return;

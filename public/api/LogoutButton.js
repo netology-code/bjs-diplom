@@ -7,7 +7,8 @@ class LogoutButton {
     this.logoutBtn.addEventListener('click', this.logoutClick.bind(this));
   }
 
-  logoutClick() {
+  logoutClick(event) {
+    event.preventDefault();
     this.action();
   }
 }

@@ -27,12 +27,14 @@ class UserForm {
     setTimeout(() => { this.registerErrorMessageBox.style.display = 'none'; }, 5000);
   }
 
-  loginFormAction() {
+  loginFormAction(event) {
+    event.preventDefault();
     this.loginFormCallback(this.getData(this.loginForm));
     this.loginForm.reset();
   }
 
-  registerFormAction() {
+  registerFormAction(event) {
+    event.preventDefault();
     this.registerFormCallback(this.getData(this.registerForm));
     this.registerForm.reset();
   }

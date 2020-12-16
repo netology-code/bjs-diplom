@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 class MoneyManager {
   constructor() {
     this.addMoneyForm = document.getElementById('addMoney');

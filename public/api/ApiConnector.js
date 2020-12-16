@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 class ApiConnector {
   /**
    * Пробует парсить тело ответа, если оно существует

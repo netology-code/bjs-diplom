@@ -1,5 +1,4 @@
 
-// eslint-disable-next-line no-unused-vars
 class ProfileWidget {
   static showProfile(data) {
     const profileList = document.querySelector('.list');

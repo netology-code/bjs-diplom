@@ -1,5 +1,4 @@
 
-// eslint-disable-next-line no-unused-vars
 class RatesBoard {
   constructor() {
     this.tableBody = document.querySelector('table.table.rates tbody');

@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 class UserForm {
   constructor() {
     this.loginForm = document.getElementById('login');
@@ -39,7 +38,6 @@ class UserForm {
     this.registerForm.reset();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getData(form) {
     const login = form.querySelector('[name="email"]').value;
     const password = form.querySelector('[name="password"]').value;

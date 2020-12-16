@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 class FavoritesWidget {
   constructor() {
     this.favoritesTableBody = document.querySelector('table.table.addresses tbody');

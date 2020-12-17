@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 
 const router = express.Router();
 const low = require('lowdb');
@@ -44,7 +44,7 @@ router.post('/add', (request, response) => {
     return;
   }
 
-  if (id === user.id) {
+  if (Number(id) === user.id) {
     response.json({ success: false, error: 'Нельзя добавить себя в избранное' });
     return;
   }

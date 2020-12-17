@@ -1,8 +1,8 @@
-import express from 'express';
-import getStocks from './stocks';
-import user from './user';
-import favorites from './favorites';
-import money from './money';
+const express = require('express');
+const getStocks = require('./stocks');
+const user = require('./user');
+const favorites = require('./favorites');
+const money = require('./money');
 
 const router = express.Router();
 router.use('/user', user);

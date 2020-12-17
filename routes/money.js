@@ -1,10 +1,9 @@
-import express from 'express';
-
-import low from 'lowdb';
-import getStocks from './stocks';
+const express = require('express');
+const low = require('lowdb');
+const getStocks = require('./stocks');
+const FileSync = require('lowdb/adapters/FileSync');
 
 const router = express.Router();
-const FileSync = require('lowdb/adapters/FileSync');
 
 const adapter = new FileSync('db.json');
 const db = low(adapter);

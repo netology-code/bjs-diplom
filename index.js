@@ -1,8 +1,4 @@
 require('dotenv').config();
-
-const {
-  PORT, PUBLIC_PATH, INDEX_FILE, HOME_FILE,
-} = process.env;
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
@@ -11,6 +7,11 @@ const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
+const api = require('./routes');
+
+const {
+  PORT, PUBLIC_PATH, INDEX_FILE, HOME_FILE,
+} = process.env;
 
 const db = low(new FileSync('db.json'));
 
@@ -79,8 +80,6 @@ app.use(cookieSession({
 }));
 app.use(morgan('tiny'));
 app.use(express.static(`${__dirname}/${PUBLIC_PATH}`));
-
-const api = require('./routes');
 
 app.use(bodyParser.json());
 app.use('/', api);

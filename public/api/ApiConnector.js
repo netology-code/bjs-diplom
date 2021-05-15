@@ -20,8 +20,7 @@ class ApiConnector {
    *
    * @static
    * @param {*} { username, password }
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static login({ login, password }, callback) {
@@ -52,8 +51,7 @@ class ApiConnector {
    *
    * @static
    * @param {*} { username, password }
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static register({ login, password }, callback) {
@@ -81,8 +79,7 @@ class ApiConnector {
    * Отправляет запрос на получение текущего авторизованного пользователя
    *
    * @static
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static current(callback) {
@@ -107,8 +104,7 @@ class ApiConnector {
    * Отправляет запрос деавторизацию пользователя
    *
    * @static
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static logout(callback) {
@@ -133,8 +129,7 @@ class ApiConnector {
    * Отправляет запрос на получение списка избранного
    *
    * @static
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static getFavorites(callback) {
@@ -160,8 +155,7 @@ class ApiConnector {
    *
    * @static
    * @param {*} { id, name }
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static addUserToFavorites({ id, name }, callback) {
@@ -188,8 +182,7 @@ class ApiConnector {
    *
    * @static
    * @param {*} id
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static removeUserFromFavorites(id, callback) {
@@ -217,8 +210,7 @@ class ApiConnector {
    *
    * @static
    * @param {*} { to, amount }
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static transferMoney({ to, currency, amount }, callback) {
@@ -247,8 +239,7 @@ class ApiConnector {
    *
    * @static
    * @param {*} { currency, amount }
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static addMoney({ currency, amount }, callback) {
@@ -277,8 +268,7 @@ class ApiConnector {
    *
    * @static
    * @param {*} { fromCurrency, targetCurrency, fromAmount }
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static convertMoney({ fromCurrency, targetCurrency, fromAmount }, callback) {
@@ -306,8 +296,7 @@ class ApiConnector {
    * Отправляет запрос на получение курсов валют (последние 100 записей)
    *
    * @static
-   * @param {Function} callback-функция с ошибкой `error` в качестве первого параметра
-   * (null если ошибки нет) и телом `data` в качестве второго параметра
+   * @param {Function} callback-функция с телом `data` в качестве параметра
    * @memberof ApiConnector
    */
   static getStocks(callback) {

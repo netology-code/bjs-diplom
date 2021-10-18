@@ -42,7 +42,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -71,7 +71,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -96,7 +96,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -121,7 +121,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -146,7 +146,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -173,7 +173,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -200,7 +200,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -230,7 +230,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -259,7 +259,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -288,7 +288,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 
@@ -312,7 +312,7 @@ class ApiConnector {
         callback(responseBody);
       })
       .catch((e) => {
-        console.error("Произошла ошибка: ", e);
+        console.error('Произошла ошибка: ', e);
       });
   }
 }

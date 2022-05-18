@@ -27,21 +27,20 @@ ApiConnector.getStocks(response => {
 getCurse();
 setTimeout(getCurse, 60000);
 
+
 const moneyManager = new MoneyManager();
-moneyManager.addMoneyCallback = (data) =>{
-    ApiConnector.addMoney = (data, response => {
+moneyManager.addMoneyCallback = (data) => ApiConnector.addMoney(data, response  =>{
         if(response.success) {
             ProfileWidget.showProfile(response.data);
-            errorMessageBlock.setMessage(response.success, 'Пополнение счёта');
+            moneyManager.setMessage(response.success, 'Пополнение счёта');
         }  
         else{
-            errorMessageBlock.setMessage(response.success, 'Произошла ошибка');
+            moneyManager.setMessage(response.success, 'Произошла ошибка');
         }
     });
-}
 
-moneyManager.conversionMoneyCallback = (data) =>{
-    ApiConnector.convertMoney = (data, response => {
+
+moneyManager.conversionMoneyCallback = (data) => ApiConnector.convertMoney(data, response => {
         if(response.success) {
             ProfileWidget.showProfile(response.data);
             moneyManager.setMessage(response.success, 'Конвертирование валюты');
@@ -50,18 +49,26 @@ moneyManager.conversionMoneyCallback = (data) =>{
             moneyManager.setMessage(response.success, 'Произошла ошибка');
         }
     });
-}
+
+    moneyManager.sendMoneyCallback = (data) => ApiConnector.transferMoney(data, response => {
+        if(response.success) {
+            ProfileWidget.showProfile(response.data);
+            moneyManager.setMessage(response.success, 'Перевод совершен');
+        }  
+        else{
+            moneyManager.setMessage(response.success, 'Недостаточно средств');
+        }
+    });
 
 const favoritesWidget = new FavoritesWidget();
 ApiConnector.getFavorites(response => {
     if(response.success) {
         favoritesWidget.clearTable();
         favoritesWidget.fillTable(response.data);
+        moneyManager.updateUsersList(response.data);
     }
 }
 );
-// *Заполните выпадающий список для перевода денег (updateUsersList). Не поняла как это можно реализовать
-//moneyManager.updateUsersList(data); в условии это тоже прописать при успешном запросе? Просто список и так уже с данными. 
 
 favoritesWidget.addUserCallback = (data)=>{
     ApiConnector.addUserToFavorites(data, response => {
